@@ -1,19 +1,36 @@
+import java.io.IOException;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.fxml.FXML;
-import javafx.scene.image.*;
+import javafx.fxml.FXMLLoader;
 
 public class Controller {
     @FXML
 
-    ImageView myImageView;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
-    Image myImage = new Image(getClass().getResourceAsStream("back.png"));
-    Image myImage2 = new Image(getClass().getResourceAsStream("AS@1x.png"));
+    public void vaiAScena1(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
-    public void displayImage() {
-        if(myImageView.getImage().equals(myImage)){
-            myImageView.setImage(myImage2);
-        } else {
-            myImageView.setImage(myImage);
-        }
-    }    
+    public void vaiAScena2(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void esci() {
+        System.exit(0);
+    }
 }

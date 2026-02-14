@@ -2,17 +2,21 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
  
 public class Main extends Application {
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage stage) {
         try {
-            Parent root = javafx.fxml.FXMLLoader.load(getClass().getResource("Scene.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-            primaryStage.setTitle("BlackJack");
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+            String css = this.getClass().getResource("application.css").toExternalForm();
+            scene.getStylesheets().add(css);
+            stage.setTitle("Prove per progetto BlackJack");
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
