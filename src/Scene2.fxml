@@ -10,7 +10,7 @@
    <children>
       <ImageView fx:id="sfondoGioco" fitHeight="596.0" fitWidth="987.0" pickOnBounds="true">
          <image>
-            <Image url="@sfondoGioco.png" />
+            <Image url="@../assets/img/altro/sfondoGioco.png" />
          </image>
       </ImageView>
       <Button fx:id="buttonMenu" layoutX="66.0" layoutY="504.0" mnemonicParsing="false" onAction="#vaiAScena1" prefHeight="20.0" prefWidth="98.0" text="Torna al menu">
@@ -34,5 +34,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <ImageView fitHeight="232.0" fitWidth="265.0" layoutX="411.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/img/carte/dorso/back.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

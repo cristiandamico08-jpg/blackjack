@@ -12,7 +12,7 @@
    <children>
       <ImageView fx:id="sfondoMenu" fitHeight="596.0" fitWidth="987.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@sfondoMenu.png" />
+            <Image url="@../assets/img/altro/sfondoMenu.png" />
          </image>
       </ImageView>
       <Button fx:id="buttonGioca" layoutX="400.0" layoutY="317.0" mnemonicParsing="false" onAction="#vaiAScena2" prefHeight="59.0" prefWidth="186.0" text="GIOCA">

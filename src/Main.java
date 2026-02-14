@@ -17,7 +17,8 @@ public class Main extends Application {
             stage.setTitle("BlackJack");
             stage.setScene(scene);
             stage.setResizable(false);
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
+            Image icon = new Image("file:assets/img/altro/icon.png");
+            stage.getIcons().add(icon);
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
