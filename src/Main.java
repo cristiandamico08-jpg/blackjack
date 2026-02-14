@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
  
@@ -16,6 +17,7 @@ public class Main extends Application {
             stage.setTitle("BlackJack");
             stage.setScene(scene);
             stage.setResizable(false);
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
