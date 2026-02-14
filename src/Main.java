@@ -13,7 +13,7 @@ public class Main extends Application {
             //scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             String css = this.getClass().getResource("application.css").toExternalForm();
             scene.getStylesheets().add(css);
-            stage.setTitle("Prove per progetto BlackJack");
+            stage.setTitle("BlackJack");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();

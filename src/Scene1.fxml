@@ -7,25 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="987.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <ImageView fx:id="sfondo" fitHeight="400.0" fitWidth="611.0" pickOnBounds="true" smooth="false">
+      <ImageView fx:id="sfondoMenu" fitHeight="596.0" fitWidth="987.0" pickOnBounds="true" smooth="false">
          <image>
-            <Image url="@sfondo.png" />
+            <Image url="@sfondoMenu.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonGioca" layoutX="207.0" layoutY="170.0" mnemonicParsing="false" onAction="#vaiAScena2" prefHeight="59.0" prefWidth="186.0" text="GIOCA">
+      <Button fx:id="buttonGioca" layoutX="400.0" layoutY="317.0" mnemonicParsing="false" onAction="#vaiAScena2" prefHeight="59.0" prefWidth="186.0" text="GIOCA">
          <font>
             <Font size="23.0" />
          </font>
       </Button>
-      <Button fx:id="buttonEsci" layoutX="235.0" layoutY="250.0" mnemonicParsing="false" onAction="#esci" prefHeight="36.0" prefWidth="130.0" text="Esci" />
-      <Label fx:id="titolo" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="14.0" prefHeight="142.0" prefWidth="279.0" text="BLACK" textAlignment="CENTER">
+      <Button fx:id="buttonEsci" layoutX="428.0" layoutY="400.0" mnemonicParsing="false" onAction="#esci" prefHeight="36.0" prefWidth="130.0" text="Esci" />
+      <Label fx:id="titoloBlack" alignment="CENTER" contentDisplay="CENTER" layoutX="225.0" layoutY="162.0" prefHeight="142.0" prefWidth="292.0" text="BLACK" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="96.0" />
          </font>
       </Label>
-      <Label fx:id="titolo1" alignment="CENTER" contentDisplay="CENTER" layoutX="336.0" layoutY="14.0" prefHeight="142.0" prefWidth="218.0" text="JACK" textAlignment="CENTER" textFill="RED">
+      <Label fx:id="titoloJack" alignment="CENTER" contentDisplay="CENTER" layoutX="471.0" layoutY="162.0" prefHeight="142.0" prefWidth="292.0" text="JACK" textAlignment="CENTER" textFill="RED">
          <font>
             <Font size="96.0" />
          </font>
