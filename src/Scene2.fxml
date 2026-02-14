@@ -29,5 +29,10 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
+      <Button fx:id="buttonMenu1" layoutX="66.0" layoutY="463.0" mnemonicParsing="false" onAction="#vaiAScena1" prefHeight="20.0" prefWidth="98.0" text="Nuova partita">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
