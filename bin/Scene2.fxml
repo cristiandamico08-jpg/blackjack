@@ -34,7 +34,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fitHeight="232.0" fitWidth="265.0" layoutX="411.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="myImageView" fitHeight="232.0" fitWidth="265.0" layoutX="411.0" layoutY="179.0" onMouseClicked="#pescaCarta" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/carte/dorso/back.png" />
          </image>
