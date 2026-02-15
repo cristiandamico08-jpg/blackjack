@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -34,6 +35,10 @@ public class Controller {
 
     public Button buttonCarta;
 
+    public Label soldiLabel;
+
+    private Integer soldiCorrenti = 1000; 
+
     public void vaiAScena1(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -55,7 +60,7 @@ public class Controller {
         if(contatoreCarte == 7){
             buttonCarta.setDisable(true);
         }
-        playerHand.setSpacing(10);
+        playerHand.setSpacing(-45);
         ImageView carta = new ImageView(generaCarta());
         carta.setFitHeight(125);
         carta.setPreserveRatio(true);
@@ -103,7 +108,8 @@ public class Controller {
         playerHand.setOpacity(1);
         bottoni.setDisable(false);
         bottoni.setOpacity(1);
-        
+        soldiCorrenti -= valorePuntata;
+        soldiLabel.setText(soldiCorrenti + "€");
     }
 
     public void esci() {
