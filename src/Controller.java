@@ -19,20 +19,14 @@ public class Controller {
 
     private Stage stage;
     private Scene scene;
-    private Parent root;
-
     public ImageView myImageView;
-
     public HBox playerHand;
-
     private Integer valorePuntata;
-
     private Integer contatoreCarte = 0;
 
     public Pane puntataSelect;
 
     public Pane bottoni;
-
     public Button buttonCarta;
     public Button buttonRaddoppia;
     public Button buttonStai;
