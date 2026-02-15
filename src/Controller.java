@@ -34,6 +34,8 @@ public class Controller {
     public Pane bottoni;
 
     public Button buttonCarta;
+    public Button buttonRaddoppia;
+    public Button buttonStai;
 
     public Label soldiLabel;
 
@@ -66,6 +68,26 @@ public class Controller {
         carta.setPreserveRatio(true);
         playerHand.getChildren().add(carta);
         
+    }
+
+    public void pescaCartaRaddoppia(){
+        contatoreCarte++;
+        if(contatoreCarte == 1){
+            buttonRaddoppia.setDisable(true);
+            buttonCarta.setDisable(true);
+        }
+        playerHand.setSpacing(-45);
+        ImageView carta = new ImageView(generaCarta());
+        carta.setFitHeight(125);
+        carta.setPreserveRatio(true);
+        playerHand.getChildren().add(carta);
+        
+    }
+
+    public void stai(){
+        buttonRaddoppia.setDisable(true);
+        buttonCarta.setDisable(true);
+        buttonStai.setDisable(true);
     }
 
     private Image generaCarta(){
