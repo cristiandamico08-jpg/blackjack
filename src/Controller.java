@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -23,11 +24,15 @@ public class Controller {
 
     public HBox playerHand;
 
-    public Integer valorePuntata;
+    private Integer valorePuntata;
+
+    private Integer contatoreCarte = 0;
 
     public Pane puntataSelect;
 
     public Pane bottoni;
+
+    public Button buttonCarta;
 
     public void vaiAScena1(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
@@ -46,11 +51,16 @@ public class Controller {
     }
 
     public void pescaCarta(){
+        contatoreCarte++;
+        if(contatoreCarte == 7){
+            buttonCarta.setDisable(true);
+        }
         playerHand.setSpacing(10);
         ImageView carta = new ImageView(generaCarta());
         carta.setFitHeight(125);
         carta.setPreserveRatio(true);
         playerHand.getChildren().add(carta);
+        
     }
 
     private Image generaCarta(){
