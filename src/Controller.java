@@ -4,6 +4,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,14 @@ public class Controller {
     private Parent root;
 
     public ImageView myImageView;
+
+    public HBox playerHand;
+
+    public Integer valorePuntata;
+
+    public Pane puntataSelect;
+
+    public Pane bottoni;
 
     public void vaiAScena1(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
@@ -36,7 +46,11 @@ public class Controller {
     }
 
     public void pescaCarta(){
-        myImageView.setImage(generaCarta());
+        playerHand.setSpacing(10);
+        ImageView carta = new ImageView(generaCarta());
+        carta.setFitHeight(125);
+        carta.setPreserveRatio(true);
+        playerHand.getChildren().add(carta);
     }
 
     private Image generaCarta(){
@@ -51,6 +65,35 @@ public class Controller {
         
         Image carta = new Image(fileCarta);
         return carta;
+    }
+
+    public void punta100(){
+        valorePuntata = 100;
+        puntataSelect.setDisable(true);
+        puntataSelect.setOpacity(0);
+        setPlayerHandVisible();
+    }
+
+    public void punta250(){
+        valorePuntata = 250;
+        puntataSelect.setDisable(true);
+        puntataSelect.setOpacity(0);
+        setPlayerHandVisible();
+    }
+
+    public void punta500(){
+        valorePuntata = 500;
+        puntataSelect.setDisable(true);
+        puntataSelect.setOpacity(0);
+        setPlayerHandVisible();
+    }
+
+    private void setPlayerHandVisible(){
+        playerHand.setDisable(false);
+        playerHand.setOpacity(1);
+        bottoni.setDisable(false);
+        bottoni.setOpacity(1);
+        
     }
 
     public void esci() {

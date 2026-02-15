@@ -6,6 +6,8 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="759.0" prefWidth="1207.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
@@ -15,23 +17,35 @@
             <Image url="@../assets/img/altro/sfondoGioco.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonMenu" layoutX="95.0" layoutY="637.0" mnemonicParsing="false" onAction="#vaiAScena1" prefHeight="20.0" prefWidth="98.0" text="Torna al menu">
+      <Button fx:id="buttonMenu" layoutX="95.0" layoutY="616.0" mnemonicParsing="false" onAction="#vaiAScena1" prefHeight="20.0" prefWidth="98.0" text="Torna al menu">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="buttonCarta" layoutX="1011.0" layoutY="633.0" mnemonicParsing="false" onAction="#pescaCarta" prefHeight="32.0" prefWidth="98.0" text="Carta">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="buttonStai" layoutX="1011.0" layoutY="592.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Stai">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="buttonRaddoppia" layoutX="1011.0" layoutY="550.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Raddoppia">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
-      <Button fx:id="buttonNuovaPartita" layoutX="95.0" layoutY="596.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Nuova partita">
+      <Pane fx:id="bottoni" disable="true" layoutX="1011.0" layoutY="510.0" opacity="0.0">
+         <children>
+            <Button fx:id="buttonCarta" layoutY="123.0" mnemonicParsing="false" onAction="#pescaCarta" prefHeight="32.0" prefWidth="98.0" text="Carta">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="buttonStai" layoutY="82.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Stai">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="buttonRaddoppia" layoutY="40.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Raddoppia">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="buttonSplit" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Split">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+      <Button fx:id="buttonNuovaPartita" layoutX="95.0" layoutY="575.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="98.0" text="Nuova partita">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -44,40 +58,35 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="buttonSplit" layoutX="1011.0" layoutY="510.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Split">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label layoutX="95.0" layoutY="526.0" prefHeight="66.0" prefWidth="86.0" text="Soldi:" textFill="WHITE">
+      <Label layoutX="101.0" layoutY="642.0" prefHeight="26.0" prefWidth="86.0" text="1000€" textFill="WHITE">
          <font>
-            <Font size="33.0" />
+            <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="181.0" layoutY="526.0" prefHeight="66.0" prefWidth="337.0" text="1000" textFill="WHITE">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
-      <Button fx:id="button100" layoutX="393.0" layoutY="635.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="100€">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="button250" layoutX="552.0" layoutY="635.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="250€">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Button fx:id="button500" layoutX="701.0" layoutY="634.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="101.0" text="500€">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label layoutX="450.0" layoutY="575.0" prefHeight="66.0" prefWidth="305.0" text="scegli la tua puntata:" textFill="WHITE">
-         <font>
-            <Font size="33.0" />
-         </font>
-      </Label>
+      <Pane fx:id="puntataSelect" layoutX="393.0" layoutY="575.0">
+         <children>
+            <Button fx:id="button100" layoutY="60.0" mnemonicParsing="false" onAction="#punta100" prefHeight="32.0" prefWidth="101.0" text="100€">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="button250" layoutX="159.0" layoutY="60.0" mnemonicParsing="false" onAction="#punta250" prefHeight="32.0" prefWidth="101.0" text="250€">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="button500" layoutX="308.0" layoutY="59.0" mnemonicParsing="false" onAction="#punta500" prefHeight="32.0" prefWidth="101.0" text="500€">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="57.0" prefHeight="66.0" prefWidth="305.0" text="scegli la tua puntata:" textFill="WHITE">
+               <font>
+                  <Font size="33.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <HBox fx:id="playerHand" alignment="CENTER" disable="true" layoutX="254.0" layoutY="551.0" prefHeight="100.0" prefWidth="687.0" />
    </children>
 </AnchorPane>
