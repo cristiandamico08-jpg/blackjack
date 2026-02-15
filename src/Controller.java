@@ -51,53 +51,6 @@ public class Controller {
         stage.show();
     }
 
-    public void pescaCarta(){
-        contatoreCarte++;
-        if(contatoreCarte == 7){
-            buttonCarta.setDisable(true);
-        }
-        playerHand.setSpacing(-45);
-        ImageView carta = new ImageView(generaCarta());
-        carta.setFitHeight(125);
-        carta.setPreserveRatio(true);
-        playerHand.getChildren().add(carta);
-        
-    }
-
-    public void pescaCartaRaddoppia(){
-        contatoreCarte++;
-        if(contatoreCarte == 1){
-            buttonRaddoppia.setDisable(true);
-            buttonCarta.setDisable(true);
-        }
-        playerHand.setSpacing(-45);
-        ImageView carta = new ImageView(generaCarta());
-        carta.setFitHeight(125);
-        carta.setPreserveRatio(true);
-        playerHand.getChildren().add(carta);
-        
-    }
-
-    public void stai(){
-        buttonRaddoppia.setDisable(true);
-        buttonCarta.setDisable(true);
-        buttonStai.setDisable(true);
-    }
-
-    private Image generaCarta(){
-        Random random = new Random();
-        
-        int numeroN = random.nextInt(13) + 1;
-        String numeroCarta = numeroN == 1 ? "A" : numeroN == 10 ? "T" : numeroN == 11 ? "J" : numeroN == 12 ? "Q" : numeroN == 13 ? "K" : String.valueOf(numeroN);
-        int semeN = random.nextInt(3) + 1;
-        
-        String semeCarta = semeN == 1 ? "S" : semeN == 2 ? "C" : semeN == 3 ? "H" : "D";
-        String fileCarta = "file:assets/img/carte/fronte/" + numeroCarta + semeCarta + "@1x.png";
-        
-        Image carta = new Image(fileCarta);
-        return carta;
-    }
-
     public void punta100(){
         valorePuntata = 100;
         puntataSelect.setDisable(true);
@@ -126,6 +79,55 @@ public class Controller {
         bottoni.setOpacity(1);
         soldiCorrenti -= valorePuntata;
         soldiLabel.setText(soldiCorrenti + "€");
+    }
+
+    public void pescaCarta(){
+        contatoreCarte++;
+        if(contatoreCarte == 7){
+            buttonCarta.setDisable(true);
+        }
+        playerHand.setSpacing(-45);
+        ImageView carta = new ImageView(generaCarta());
+        carta.setFitHeight(125);
+        carta.setPreserveRatio(true);
+        playerHand.getChildren().add(carta);
+        
+    }
+
+    public void pescaCartaRaddoppia(){
+        contatoreCarte++;
+        soldiCorrenti -= valorePuntata;
+        soldiLabel.setText(soldiCorrenti + "€");
+        if(contatoreCarte == 1){
+            buttonRaddoppia.setDisable(true);
+            buttonCarta.setDisable(true);
+        }
+        playerHand.setSpacing(-45);
+        ImageView carta = new ImageView(generaCarta());
+        carta.setFitHeight(125);
+        carta.setPreserveRatio(true);
+        playerHand.getChildren().add(carta);
+
+    }
+
+    public void stai(){
+        buttonRaddoppia.setDisable(true);
+        buttonCarta.setDisable(true);
+        buttonStai.setDisable(true);
+    }
+
+    private Image generaCarta(){
+        Random random = new Random();
+        
+        int numeroN = random.nextInt(13) + 1;
+        String numeroCarta = numeroN == 1 ? "A" : numeroN == 10 ? "T" : numeroN == 11 ? "J" : numeroN == 12 ? "Q" : numeroN == 13 ? "K" : String.valueOf(numeroN);
+        int semeN = random.nextInt(3) + 1;
+        
+        String semeCarta = semeN == 1 ? "S" : semeN == 2 ? "C" : semeN == 3 ? "H" : "D";
+        String fileCarta = "file:assets/img/carte/fronte/" + numeroCarta + semeCarta + "@1x.png";
+        
+        Image carta = new Image(fileCarta);
+        return carta;
     }
 
     public void esci() {
