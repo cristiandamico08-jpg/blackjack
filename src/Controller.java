@@ -3,8 +3,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -131,6 +134,13 @@ public class Controller {
     }
 
     public void esci() {
-        System.exit(0);
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Esci");
+        alert.setHeaderText("Stai per abbandonare il gioco");
+        alert.setContentText("Vuoi davvero uscire?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            System.exit(0);
+        }
     }
 }
