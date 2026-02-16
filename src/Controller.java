@@ -123,10 +123,17 @@ public class Controller {
     }
 
     public void prossimaMano(){
-        disable(buttonProssimaMano, false, 1);
         if (somma > sommaDealer && somma <= 21) {
             soldiCorrenti += (valorePuntata * 2);
+            soldiLabel.setText(soldiCorrenti + "€");
+        } else if (sommaDealer > 21 && somma <= 21) {
+            soldiCorrenti += (valorePuntata * 2);
+            soldiLabel.setText(soldiCorrenti + "€");
+        } else if (somma == sommaDealer && somma <= 21) {
+            soldiCorrenti += valorePuntata;
+            soldiLabel.setText(soldiCorrenti + "€");
         }
+        buttonProssimaMano.setDisable(true);
     }
 
     private void setPlayerHandVisible(){
@@ -159,7 +166,7 @@ public class Controller {
         cartaGirata.setPreserveRatio(true);
         dealerHand.getChildren().add(cartaGirata);
         disable(manoDealerLabel, false, 1);
-        
+        disable(buttonProssimaMano, false, 1);
     }
 
     private void giraCarta(){
@@ -238,6 +245,7 @@ public class Controller {
         buttonRaddoppia.setDisable(true);
         buttonCarta.setDisable(true);
         buttonStai.setDisable(true);
+        buttonProssimaMano.setDisable(false);
         giraCarta();
     }
 
