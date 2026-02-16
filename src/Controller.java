@@ -40,6 +40,9 @@ public class Controller {
     public Button buttonRaddoppia;
     public Button buttonStai;
     public Button buttonProssimaMano;
+    public Button button100;
+    public Button button250;
+    public Button button500;
 
     public Label soldiLabel;
 
@@ -50,6 +53,7 @@ public class Controller {
 
     private Integer soldiCorrenti = 1000; 
 
+    boolean raddoppio;
     boolean cartaDealerGirata;
     int somma = 0;
     int sommaDealer = 0;
@@ -94,61 +98,125 @@ public class Controller {
         }
     }
 
-    public void vincita(){
-        if(somma > sommaDealer && somma <= 21){
-            soldiCorrenti += (valorePuntata * 2);
-            soldiLabel.setText(soldiCorrenti + "€");
-        } else if (sommaDealer > 21 && somma <=21) {
-            soldiCorrenti += (valorePuntata * 2);
-            soldiLabel.setText(soldiCorrenti + "€");
-        }
-    }
-
-
     public void punta100(){
-        valorePuntata = 100;
-        disable(puntataSelect, true, 0);
-        disable(manoLabel, false, 1);
-        setPlayerHandVisible();
-        setDealerHandVisibile();
+        if(soldiCorrenti >= 100){
+            button100.setDisable(false);
+            button500.setDisable(false);
+            button250.setDisable(false);
+            valorePuntata = 100;
+            disable(puntataSelect, true, 0);
+            disable(manoLabel, false, 1);
+            setPlayerHandVisible();
+            setDealerHandVisibile();
+        } else {
+            button100.setDisable(true);
+            button500.setDisable(true);
+            button250.setDisable(true);
+        }
     }
 
     public void punta250(){
-        valorePuntata = 250;
-        disable(puntataSelect, true, 0);
-        disable(manoLabel, false, 1);
-        setDealerHandVisibile();
-        setPlayerHandVisible();
+        if(soldiCorrenti >= 250){
+            button500.setDisable(false);
+            button250.setDisable(false);
+            valorePuntata = 250;
+            disable(puntataSelect, true, 0);
+            disable(manoLabel, false, 1);
+            setDealerHandVisibile();
+            setPlayerHandVisible();
+        } else {
+            button500.setDisable(true);
+            button250.setDisable(true);
+        }
     }
 
     public void punta500(){
-        valorePuntata = 500;
-        disable(puntataSelect, true, 0);
-        disable(manoLabel, false, 1);
-        setDealerHandVisibile();
-        setPlayerHandVisible();
+        if(soldiCorrenti >= 500){
+            button500.setDisable(false);
+            valorePuntata = 500;
+            disable(puntataSelect, true, 0);
+            disable(manoLabel, false, 1);
+            setDealerHandVisibile();
+            setPlayerHandVisible();
+        } else {
+            button500.setDisable(true);
+        }
     }
 
-    public void prossimaMano(){
-        if (somma > sommaDealer && somma <= 21) {
-            soldiCorrenti += (valorePuntata * 2);
-            soldiLabel.setText(soldiCorrenti + "€");
-        } else if (sommaDealer > 21 && somma <= 21) {
-            soldiCorrenti += (valorePuntata * 2);
-            soldiLabel.setText(soldiCorrenti + "€");
-        } else if (somma == sommaDealer && somma <= 21) {
-            soldiCorrenti += valorePuntata;
-            soldiLabel.setText(soldiCorrenti + "€");
+    public void prossimaMano(ActionEvent event) throws IOException{
+        if (soldiCorrenti <= 0) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Hai perso");
+            alert.setHeaderText("Hai finito i soldi");
+            alert.setContentText("Vuoi cominciare una nuova partita?");
+            if (alert.showAndWait().get() == ButtonType.OK) {
+                somma = 0;
+                sommaDealer = 0;
+                valorePuntata = 0;
+                listaCarte.clear();
+                listaCarteDealer.clear();
+                playerHand.getChildren().clear();
+                dealerHand.getChildren().clear();
+                contatoreCarte = 2;
+                Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                somma = 0;
+                sommaDealer = 0;
+                valorePuntata = 0;
+                listaCarte.clear();
+                listaCarteDealer.clear();
+                playerHand.getChildren().clear();
+                dealerHand.getChildren().clear();
+                contatoreCarte = 2;
+                Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        } else {
+            if (somma > sommaDealer && somma <= 21) {
+                if(raddoppio == true){
+                    soldiCorrenti += (valorePuntata * 4);
+                } else {
+                    soldiCorrenti += (valorePuntata * 2);
+                }
+                soldiLabel.setText(soldiCorrenti + "€");
+            } else if (sommaDealer > 21 && somma <= 21) {
+                soldiCorrenti += (valorePuntata * 2);
+                soldiLabel.setText(soldiCorrenti + "€");
+            } else if (somma == sommaDealer && somma <= 21) {
+                soldiCorrenti += valorePuntata;
+                soldiLabel.setText(soldiCorrenti + "€");
+            }
+            disable(buttonProssimaMano, true, 0);
+            somma = 0;
+            sommaDealer = 0;
+            valorePuntata = 0;
+            listaCarte.clear();
+            listaCarteDealer.clear();
+            playerHand.getChildren().clear();
+            dealerHand.getChildren().clear();
+            contatoreCarte = 2;
+            buttonCarta.setDisable(false);
+            buttonStai.setDisable(false);
+            buttonRaddoppia.setDisable(false);
+            manoLabel.setTextFill(Color.WHITE);
+            manoDealerLabel.setTextFill(Color.WHITE);
+            raddoppio = false;
+            disable(bottoni, true, 0);
+            disable(manoLabel, true, 0);
+            disable(manoDealerLabel, true, 0);
+            disable(puntataSelect, false, 1);
+            if(valorePuntata == 100 || valorePuntata == 250 || valorePuntata == 500){
+                setPlayerHandVisible();
+                setDealerHandVisibile();
+            }
         }
-        disable(buttonProssimaMano, true, 0);
-        somma = 0;
-        sommaDealer = 0;
-        valorePuntata = 0;
-        listaCarte.clear();
-        listaCarteDealer.clear();
-        playerHand.getChildren().clear();
-        dealerHand.getChildren().clear();
-        contatoreCarte = 2;
     }
 
     private void setPlayerHandVisible(){
@@ -167,6 +235,14 @@ public class Controller {
         
         contaCarte();
         if(somma == 21){
+            somma = 0;
+            sommaDealer = 0;
+            valorePuntata = 0;
+            listaCarte.clear();
+            listaCarteDealer.clear();
+            playerHand.getChildren().clear();
+            dealerHand.getChildren().clear();
+            contatoreCarte = 2;
             manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
             manoLabel.setTextFill(Color.LIGHTGREEN);
             soldiCorrenti += (int)(valorePuntata * 1.5);
@@ -175,23 +251,6 @@ public class Controller {
     }
 
     private void setDealerHandVisibile(){
-        /*ImageView carta1 = new ImageView(generaCarta());
-        carta1.setFitHeight(125);
-        carta1.setPreserveRatio(true);
-        dealerHand.getChildren().add(carta1);
-        listaCarteDealer.add(carta1);
-
-        Image cartaReale = generaCarta();
-        cartaGirata = new ImageView(cartaReale);
-        cartaGirata.setFitHeight(125);
-        cartaGirata.setPreserveRatio(true);
-
-        dealerHand.getChildren().add(cartaGirata);
-        listaCarteDealer.add(cartaGirata);
-
-        cartaGirata.setImage(new Image("file:assets/img/carte/dorso/back.png"));
-
-        contaCarteDealer();*/
         pescaCartaDealer();
         cartaGirata = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
         cartaDealerGirata = true;
@@ -253,21 +312,27 @@ public class Controller {
     }
 
     public void pescaCartaRaddoppia(){
-        contatoreCarte++;
-        soldiCorrenti -= valorePuntata;
-        soldiLabel.setText(soldiCorrenti + "€");
-        stai();
-        playerHand.setSpacing(-45);
-        ImageView carta = new ImageView(generaCarta());
-        carta.setFitHeight(125);
-        carta.setPreserveRatio(true);
-        playerHand.getChildren().add(carta);
-        listaCarte.add(carta);
-        contaCarte();
-        if(somma > 21){
-            manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
-            manoLabel.setTextFill(Color.RED);
+        if(soldiCorrenti - valorePuntata < 0){
+            buttonRaddoppia.setDisable(true);
+        } else {
+            buttonRaddoppia.setDisable(false);
+            raddoppio = true;
+            contatoreCarte++;
+            soldiCorrenti -= valorePuntata;
+            soldiLabel.setText(soldiCorrenti + "€");
             stai();
+            playerHand.setSpacing(-45);
+            ImageView carta = new ImageView(generaCarta());
+            carta.setFitHeight(125);
+            carta.setPreserveRatio(true);
+            playerHand.getChildren().add(carta);
+            listaCarte.add(carta);
+            contaCarte();
+            if(somma > 21){
+                manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
+                manoLabel.setTextFill(Color.RED);
+                stai();
+            }
         }
     }
 

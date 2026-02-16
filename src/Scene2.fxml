@@ -110,19 +110,19 @@
             </Label>
          </children>
       </Pane>
-      <HBox fx:id="playerHand" alignment="CENTER" disable="true" layoutX="258.0" layoutY="483.0" prefHeight="100.0" prefWidth="687.0" />
+      <HBox fx:id="playerHand" alignment="CENTER" disable="true" layoutX="265.0" layoutY="488.0" prefHeight="100.0" prefWidth="687.0" />
       <Label fx:id="manoLabel" alignment="CENTER" disable="true" layoutX="393.0" layoutY="644.0" opacity="0.0" prefHeight="46.0" prefWidth="410.0" text="La tua mano: " textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <ImageView fx:id="dealer" fitHeight="304.0" fitWidth="317.0" layoutX="457.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="dealer" fitHeight="304.0" fitWidth="317.0" layoutX="456.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/img/altro/dealer.png" />
          </image>
       </ImageView>
-      <HBox fx:id="dealerHand" alignment="CENTER" disable="true" layoutX="265.0" layoutY="318.0" prefHeight="100.0" prefWidth="687.0" />
-      <Label fx:id="manoDealerLabel" disable="true" layoutX="78.0" layoutY="76.0" opacity="0.0" prefHeight="46.0" prefWidth="410.0" text="Mano dealer: " textFill="WHITE">
+      <HBox fx:id="dealerHand" alignment="CENTER" disable="true" layoutX="264.0" layoutY="313.0" prefHeight="100.0" prefWidth="687.0" />
+      <Label fx:id="manoDealerLabel" alignment="CENTER" disable="true" layoutX="403.0" layoutY="267.0" opacity="0.0" prefHeight="46.0" prefWidth="410.0" text="Mano dealer: " textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
