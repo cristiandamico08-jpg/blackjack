@@ -50,8 +50,6 @@ public class Controller {
 
     private Integer soldiCorrenti = 1000; 
 
-    boolean playerSballato; 
-
     boolean cartaDealerGirata;
     int somma = 0;
     int sommaDealer = 0;
@@ -133,7 +131,7 @@ public class Controller {
             soldiCorrenti += valorePuntata;
             soldiLabel.setText(soldiCorrenti + "€");
         }
-        buttonProssimaMano.setDisable(true);
+        disable(buttonProssimaMano, true, 0);
     }
 
     private void setPlayerHandVisible(){
@@ -174,7 +172,7 @@ public class Controller {
         cartaGirata.setImage(generaCarta());
         listaCarteDealer.add(cartaGirata);
         contaCarteDealer();
-        while (sommaDealer < 17 && playerSballato == false){
+        while (sommaDealer < 17 && somma <= 21){
             pescaCartaDealer();
         }
     }
@@ -212,7 +210,6 @@ public class Controller {
         contaCarte();
         if(somma > 21){
             manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
-            playerSballato = true;
             manoLabel.setTextFill(Color.RED);
             stai();
         }
@@ -235,7 +232,6 @@ public class Controller {
         contaCarte();
         if(somma > 21){
             manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
-            playerSballato = true;
             manoLabel.setTextFill(Color.RED);
             stai();
         }
@@ -245,8 +241,9 @@ public class Controller {
         buttonRaddoppia.setDisable(true);
         buttonCarta.setDisable(true);
         buttonStai.setDisable(true);
-        buttonProssimaMano.setDisable(false);
+        disable(buttonProssimaMano, false, 1);
         giraCarta();
+        
     }
 
     private Image generaCarta(){
