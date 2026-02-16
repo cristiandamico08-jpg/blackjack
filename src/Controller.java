@@ -1,20 +1,13 @@
 import java.io.IOException;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.*;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -144,18 +137,6 @@ public class Controller {
     }
 
     public void prossimaMano(ActionEvent event) throws IOException{
-        /*if(raddoppio && somma > sommaDealer && somma <= 21){
-            soldiCorrenti += (valorePuntata*4);
-        } else{
-            if (somma > sommaDealer && somma <= 21){
-                soldiCorrenti += (valorePuntata * 2);
-            }else if (sommaDealer > 21 && somma <= 21) {
-                soldiCorrenti += (valorePuntata * 2);
-            } else if (somma == sommaDealer && somma <= 21) {
-                soldiCorrenti += valorePuntata;
-            }
-            
-        }*/
         int puntataReale = raddoppio ? valorePuntata * 2 : valorePuntata;
 
         if (somma > sommaDealer && somma <= 21) {
@@ -248,14 +229,6 @@ public class Controller {
         contaCarte();
         if(somma == 21){
             soldiCorrenti += (int)(valorePuntata * 1.5);
-            /*somma = 0;
-            sommaDealer = 0;
-            valorePuntata = 0;
-            listaCarte.clear();
-            listaCarteDealer.clear();
-            playerHand.getChildren().clear();
-            dealerHand.getChildren().clear();
-            contatoreCarte = 2;*/
             manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
             manoLabel.setTextFill(Color.LIGHTGREEN);
             stai();
