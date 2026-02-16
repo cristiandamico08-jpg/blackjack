@@ -66,36 +66,28 @@ public class Controller {
 
     public void punta100(){
         valorePuntata = 100;
-        puntataSelect.setDisable(true);
-        puntataSelect.setOpacity(0);
-        manoLabel.setDisable(false);
-        manoLabel.setOpacity(1);
+        disable(puntataSelect, true, 0);
+        disable(manoLabel, false, 1);
         setPlayerHandVisible();
     }
 
     public void punta250(){
         valorePuntata = 250;
-        puntataSelect.setDisable(true);
-        puntataSelect.setOpacity(0);
-        manoLabel.setDisable(false);
-        manoLabel.setOpacity(1);
+        disable(puntataSelect, true, 0);
+        disable(manoLabel, false, 1);
         setPlayerHandVisible();
     }
 
     public void punta500(){
         valorePuntata = 500;
-        puntataSelect.setDisable(true);
-        puntataSelect.setOpacity(0);
-        manoLabel.setDisable(false);
-        manoLabel.setOpacity(1);
+        disable(puntataSelect, true, 0);
+        disable(manoLabel, false, 1);
         setPlayerHandVisible();
     }
 
     private void setPlayerHandVisible(){
-        playerHand.setDisable(false);
-        playerHand.setOpacity(1);
-        bottoni.setDisable(false);
-        bottoni.setOpacity(1);
+        disable(playerHand, false, 1);
+        disable(bottoni, false, 1);
         soldiCorrenti -= valorePuntata;
         playerHand.setSpacing(-45);
         soldiLabel.setText(soldiCorrenti + "€");
@@ -105,9 +97,12 @@ public class Controller {
             carta.setFitHeight(125);
             carta.setPreserveRatio(true);
             playerHand.getChildren().add(carta);
-            
         }
+        
         contaCarte();
+        if(somma == 21){
+            manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
+        }
     }
 
     public void pescaCarta(){
@@ -138,9 +133,10 @@ public class Controller {
         contatoreCarte++;
         soldiCorrenti -= valorePuntata;
         soldiLabel.setText(soldiCorrenti + "€");
-        buttonRaddoppia.setDisable(true);
+        /*buttonRaddoppia.setDisable(true);
         buttonCarta.setDisable(true);
-        buttonStai.setDisable(true);
+        buttonStai.setDisable(true);*/
+        stai();
         playerHand.setSpacing(-45);
         ImageView carta = new ImageView(generaCarta());
         carta.setFitHeight(125);
@@ -207,5 +203,10 @@ public class Controller {
         if (alert.showAndWait().get() == ButtonType.OK) {
             System.exit(0);
         }
+    }
+
+    private void disable(Node node, boolean disable, int opacity){
+        node.setDisable(disable);
+        node.setOpacity(opacity);
     }
 }
