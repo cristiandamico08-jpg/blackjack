@@ -132,6 +132,9 @@ public class Controller {
             soldiLabel.setText(soldiCorrenti + "€");
         }
         disable(buttonProssimaMano, true, 0);
+        somma = 0;
+        sommaDealer = 0;
+        valorePuntata = 0;
     }
 
     private void setPlayerHandVisible(){
@@ -152,6 +155,7 @@ public class Controller {
         if(somma == 21){
             manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
             manoLabel.setTextFill(Color.LIGHTGREEN);
+            soldiCorrenti += (valorePuntata * (3 / 2));
             stai();
         }
     }
@@ -164,7 +168,6 @@ public class Controller {
         cartaGirata.setPreserveRatio(true);
         dealerHand.getChildren().add(cartaGirata);
         disable(manoDealerLabel, false, 1);
-        disable(buttonProssimaMano, false, 1);
     }
 
     private void giraCarta(){
