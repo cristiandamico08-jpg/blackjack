@@ -14,6 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -25,7 +27,7 @@ public class Controller {
     public ImageView myImageView;
     public HBox playerHand;
     private Integer valorePuntata;
-    private Integer contatoreCarte = 0;
+    private Integer contatoreCarte = 2;
 
     public Pane puntataSelect;
 
@@ -36,7 +38,13 @@ public class Controller {
 
     public Label soldiLabel;
 
+    public Label manoLabel;
+
+    private ArrayList<ImageView> listaCarte = new ArrayList<ImageView>();
+
     private Integer soldiCorrenti = 1000; 
+
+    int somma = 0;
 
     public void vaiAScena1(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
@@ -54,10 +62,13 @@ public class Controller {
         stage.show();
     }
 
+
     public void punta100(){
         valorePuntata = 100;
         puntataSelect.setDisable(true);
         puntataSelect.setOpacity(0);
+        manoLabel.setDisable(false);
+        manoLabel.setOpacity(1);
         setPlayerHandVisible();
     }
 
@@ -65,6 +76,8 @@ public class Controller {
         valorePuntata = 250;
         puntataSelect.setDisable(true);
         puntataSelect.setOpacity(0);
+        manoLabel.setDisable(false);
+        manoLabel.setOpacity(1);
         setPlayerHandVisible();
     }
 
@@ -72,6 +85,8 @@ public class Controller {
         valorePuntata = 500;
         puntataSelect.setDisable(true);
         puntataSelect.setOpacity(0);
+        manoLabel.setDisable(false);
+        manoLabel.setOpacity(1);
         setPlayerHandVisible();
     }
 
@@ -81,36 +96,52 @@ public class Controller {
         bottoni.setDisable(false);
         bottoni.setOpacity(1);
         soldiCorrenti -= valorePuntata;
+        playerHand.setSpacing(-45);
         soldiLabel.setText(soldiCorrenti + "€");
+        for (int i = 0; i < 2; i++) {
+            ImageView carta = new ImageView(generaCarta());
+            listaCarte.add(carta);
+            carta.setFitHeight(125);
+            carta.setPreserveRatio(true);
+            playerHand.getChildren().add(carta);
+            
+        }
+        contaCarte();
     }
 
     public void pescaCarta(){
+        if(contatoreCarte == 2){
+            buttonRaddoppia.setDisable(true);
+        }
+        
         contatoreCarte++;
         if(contatoreCarte == 7){
             buttonCarta.setDisable(true);
+            buttonStai.setDisable(true);
         }
         playerHand.setSpacing(-45);
         ImageView carta = new ImageView(generaCarta());
+        listaCarte.add(carta);
         carta.setFitHeight(125);
         carta.setPreserveRatio(true);
         playerHand.getChildren().add(carta);
-        
+        contaCarte();
     }
 
     public void pescaCartaRaddoppia(){
         contatoreCarte++;
         soldiCorrenti -= valorePuntata;
         soldiLabel.setText(soldiCorrenti + "€");
-        if(contatoreCarte == 1){
-            buttonRaddoppia.setDisable(true);
-            buttonCarta.setDisable(true);
-        }
+        buttonRaddoppia.setDisable(true);
+        buttonCarta.setDisable(true);
+        buttonStai.setDisable(true);
         playerHand.setSpacing(-45);
         ImageView carta = new ImageView(generaCarta());
         carta.setFitHeight(125);
         carta.setPreserveRatio(true);
         playerHand.getChildren().add(carta);
-
+        listaCarte.add(carta);
+        contaCarte();
     }
 
     public void stai(){
@@ -131,6 +162,34 @@ public class Controller {
         
         Image carta = new Image(fileCarta);
         return carta;
+    }
+
+    private void calcolaValoreCarta(ImageView carta){
+        String immagine = carta.getImage().getUrl();
+        String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
+        String[] parti = nomeFile.split("@");
+        String numeroTesto = parti[0].substring(0, 1);
+        Integer numeroCarta = 0;
+        System.out.println("Il numero del testo e' " + numeroTesto);
+        if(numeroTesto.equals("A") && somma + 11 > 21){
+            numeroCarta = 1;
+        }else if(numeroTesto.equals("A") && somma + 11 < 21){
+            numeroCarta = 11;
+        } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
+            numeroCarta = 10;
+        } else{
+            numeroCarta = Integer.parseInt(numeroTesto);
+        }
+        System.out.println(numeroCarta);
+        somma += numeroCarta;
+    }
+
+    private void contaCarte(){
+        somma = 0;
+        for (ImageView carta : listaCarte) {          
+            calcolaValoreCarta(carta);
+        }
+        manoLabel.setText("La tua mano: " + somma);
     }
 
     public void esci() {
