@@ -11,6 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -126,6 +127,11 @@ public class Controller {
         carta.setPreserveRatio(true);
         playerHand.getChildren().add(carta);
         contaCarte();
+        if(somma > 21){
+            manoLabel.setText("Hai sballato!");
+            manoLabel.setTextFill(Color.RED);
+            stai();
+        }
     }
 
     public void pescaCartaRaddoppia(){
