@@ -29,6 +29,9 @@ public class Controller {
     public HBox playerHand;
     private Integer valorePuntata;
     private Integer contatoreCarte = 2;
+    public HBox dealerHand;
+    public Label manoDealerLabel;
+    public ImageView cartaGirata = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
 
     public Pane puntataSelect;
 
@@ -41,11 +44,14 @@ public class Controller {
 
     public Label manoLabel;
 
+    private ArrayList<ImageView> listaCarteDealer = new ArrayList<ImageView>();
     private ArrayList<ImageView> listaCarte = new ArrayList<ImageView>();
 
     private Integer soldiCorrenti = 1000; 
 
+    boolean cartaDealerGirata;
     int somma = 0;
+    int sommaDealer = 0;
 
     public void vaiAScena1(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
@@ -69,12 +75,14 @@ public class Controller {
         disable(puntataSelect, true, 0);
         disable(manoLabel, false, 1);
         setPlayerHandVisible();
+        setDealerHandVisibile();
     }
 
     public void punta250(){
         valorePuntata = 250;
         disable(puntataSelect, true, 0);
         disable(manoLabel, false, 1);
+        setDealerHandVisibile();
         setPlayerHandVisible();
     }
 
@@ -82,6 +90,7 @@ public class Controller {
         valorePuntata = 500;
         disable(puntataSelect, true, 0);
         disable(manoLabel, false, 1);
+        setDealerHandVisibile();
         setPlayerHandVisible();
     }
 
@@ -102,6 +111,64 @@ public class Controller {
         contaCarte();
         if(somma == 21){
             manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
+            manoLabel.setTextFill(Color.LIGHTGREEN);
+            stai();
+        }
+    }
+
+    private void setDealerHandVisibile(){
+        pescaCartaDealer();
+        cartaGirata = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+        cartaDealerGirata = true;
+        cartaGirata.setFitHeight(125);
+        cartaGirata.setPreserveRatio(true);
+        dealerHand.getChildren().add(cartaGirata);
+        disable(manoDealerLabel, false, 1);
+        
+    }
+
+    private void giraCarta(){
+        cartaDealerGirata = false;
+        cartaGirata.setImage(generaCarta());
+        listaCarteDealer.add(cartaGirata);
+        contaCarteDealer();
+        while (sommaDealer < 17){
+            pescaCartaDealer();
+        }
+    }
+
+    private void calcolaValoreCartaDealer(ImageView carta){
+        String immagine = carta.getImage().getUrl();
+        String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
+        String[] parti = nomeFile.split("@");
+        String numeroTesto = parti[0].substring(0, 1);
+        Integer numeroCarta = 0;
+        System.out.println("Il numero del testo e' " + numeroTesto);
+        if(numeroTesto.equals("A") && sommaDealer + 11 > 21){
+            numeroCarta = 1;
+        }else if(numeroTesto.equals("A") && sommaDealer + 11 <= 21){
+            numeroCarta = 11;
+        } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
+            numeroCarta = 10;
+        } else{
+            numeroCarta = Integer.parseInt(numeroTesto);
+        }
+        System.out.println(numeroCarta);
+        sommaDealer += numeroCarta;
+    }
+
+    public void pescaCartaDealer(){
+        dealerHand.setSpacing(-45);
+        ImageView carta = new ImageView(generaCarta());
+        listaCarteDealer.add(carta);
+        carta.setFitHeight(125);
+        carta.setPreserveRatio(true);
+        dealerHand.getChildren().add(carta);
+        contaCarteDealer();
+        
+        if (sommaDealer > 21) {
+            manoDealerLabel.setText("Mano dealer: " + sommaDealer + " (Ha sballato!)");
+            manoDealerLabel.setTextFill(Color.LIGHTGREEN);
         }
     }
 
@@ -127,6 +194,9 @@ public class Controller {
             manoLabel.setTextFill(Color.RED);
             stai();
         }
+        if(somma == 21){
+            stai();
+        }
     }
 
     public void pescaCartaRaddoppia(){
@@ -141,12 +211,18 @@ public class Controller {
         playerHand.getChildren().add(carta);
         listaCarte.add(carta);
         contaCarte();
+        if(somma > 21){
+            manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
+            manoLabel.setTextFill(Color.RED);
+            stai();
+        }
     }
 
     public void stai(){
         buttonRaddoppia.setDisable(true);
         buttonCarta.setDisable(true);
         buttonStai.setDisable(true);
+        giraCarta();
     }
 
     private Image generaCarta(){
@@ -169,7 +245,7 @@ public class Controller {
         String[] parti = nomeFile.split("@");
         String numeroTesto = parti[0].substring(0, 1);
         Integer numeroCarta = 0;
-        System.out.println("Il numero del testo e' " + numeroTesto);
+        //System.out.println("Il numero del testo e' " + numeroTesto);
         if(numeroTesto.equals("A") && somma + 11 > 21){
             numeroCarta = 1;
         }else if(numeroTesto.equals("A") && somma + 11 <= 21){
@@ -179,8 +255,16 @@ public class Controller {
         } else{
             numeroCarta = Integer.parseInt(numeroTesto);
         }
-        System.out.println(numeroCarta);
+        //System.out.println(numeroCarta);
         somma += numeroCarta;
+    }
+
+    private void contaCarteDealer(){
+        sommaDealer = 0;
+        for (ImageView carta : listaCarteDealer) {          
+            calcolaValoreCartaDealer(carta);
+        }
+        manoDealerLabel.setText("Mano dealer: " + sommaDealer);
     }
 
     private void contaCarte(){

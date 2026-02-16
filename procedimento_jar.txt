@@ -15,7 +15,7 @@ rem compila i sorgenti di src dentro bin
 javac --module-path "%PATH_TO_FX%" --add-modules javafx.controls,javafx.fxml -d bin src\*.java
 
 rem copia dei file di src dentro bin
-robocopy src bin /E /XF *.java
+robocopy assets/img/altro bin /E /XF *.java
 
 ----------------------------------------------------------------------------------------------------
 

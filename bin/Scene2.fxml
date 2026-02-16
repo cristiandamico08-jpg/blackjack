@@ -121,5 +121,11 @@
             <Image url="@../assets/img/altro/dealer.png" />
          </image>
       </ImageView>
+      <HBox fx:id="dealerHand" alignment="CENTER" disable="true" layoutX="265.0" layoutY="318.0" prefHeight="100.0" prefWidth="687.0" />
+      <Label fx:id="manoDealerLabel" disable="true" layoutX="78.0" layoutY="76.0" opacity="0.0" prefHeight="46.0" prefWidth="410.0" text="Mano dealer: " textFill="WHITE">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
