@@ -77,11 +77,20 @@ public class Controller {
         alert.setContentText("Vuoi davvero continuare?");
 
         if (alert.showAndWait().get() == ButtonType.OK) {
+            somma = 0;
+            sommaDealer = 0;
+            valorePuntata = 0;
+            listaCarte.clear();
+            listaCarteDealer.clear();
+            playerHand.getChildren().clear();
+            dealerHand.getChildren().clear();
+            contatoreCarte = 2;
             Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+            
         }
     }
 
@@ -135,6 +144,11 @@ public class Controller {
         somma = 0;
         sommaDealer = 0;
         valorePuntata = 0;
+        listaCarte.clear();
+        listaCarteDealer.clear();
+        playerHand.getChildren().clear();
+        dealerHand.getChildren().clear();
+        contatoreCarte = 2;
     }
 
     private void setPlayerHandVisible(){
@@ -155,12 +169,29 @@ public class Controller {
         if(somma == 21){
             manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
             manoLabel.setTextFill(Color.LIGHTGREEN);
-            soldiCorrenti += (valorePuntata * (3 / 2));
+            soldiCorrenti += (int)(valorePuntata * 1.5);
             stai();
         }
     }
 
     private void setDealerHandVisibile(){
+        /*ImageView carta1 = new ImageView(generaCarta());
+        carta1.setFitHeight(125);
+        carta1.setPreserveRatio(true);
+        dealerHand.getChildren().add(carta1);
+        listaCarteDealer.add(carta1);
+
+        Image cartaReale = generaCarta();
+        cartaGirata = new ImageView(cartaReale);
+        cartaGirata.setFitHeight(125);
+        cartaGirata.setPreserveRatio(true);
+
+        dealerHand.getChildren().add(cartaGirata);
+        listaCarteDealer.add(cartaGirata);
+
+        cartaGirata.setImage(new Image("file:assets/img/carte/dorso/back.png"));
+
+        contaCarteDealer();*/
         pescaCartaDealer();
         cartaGirata = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
         cartaDealerGirata = true;
