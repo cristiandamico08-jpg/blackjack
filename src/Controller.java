@@ -144,6 +144,32 @@ public class Controller {
     }
 
     public void prossimaMano(ActionEvent event) throws IOException{
+        /*if(raddoppio && somma > sommaDealer && somma <= 21){
+            soldiCorrenti += (valorePuntata*4);
+        } else{
+            if (somma > sommaDealer && somma <= 21){
+                soldiCorrenti += (valorePuntata * 2);
+            }else if (sommaDealer > 21 && somma <= 21) {
+                soldiCorrenti += (valorePuntata * 2);
+            } else if (somma == sommaDealer && somma <= 21) {
+                soldiCorrenti += valorePuntata;
+            }
+            
+        }*/
+        int puntataReale = raddoppio ? valorePuntata * 2 : valorePuntata;
+
+        if (somma > sommaDealer && somma <= 21) {
+            soldiCorrenti += puntataReale * 2;
+        } 
+        else if (sommaDealer > 21 && somma <= 21) {
+            soldiCorrenti += puntataReale * 2;
+        } 
+        else if (somma == sommaDealer && somma <= 21) {
+            soldiCorrenti += puntataReale;
+        }
+        
+
+        soldiLabel.setText(soldiCorrenti + "€");
         if (soldiCorrenti <= 0) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Hai perso");
@@ -179,20 +205,6 @@ public class Controller {
                 stage.show();
             }
         } else {
-            if (somma > sommaDealer && somma <= 21) {
-                if(raddoppio == true){
-                    soldiCorrenti += (valorePuntata * 4);
-                } else {
-                    soldiCorrenti += (valorePuntata * 2);
-                }
-                soldiLabel.setText(soldiCorrenti + "€");
-            } else if (sommaDealer > 21 && somma <= 21) {
-                soldiCorrenti += (valorePuntata * 2);
-                soldiLabel.setText(soldiCorrenti + "€");
-            } else if (somma == sommaDealer && somma <= 21) {
-                soldiCorrenti += valorePuntata;
-                soldiLabel.setText(soldiCorrenti + "€");
-            }
             disable(buttonProssimaMano, true, 0);
             somma = 0;
             sommaDealer = 0;
@@ -235,17 +247,17 @@ public class Controller {
         
         contaCarte();
         if(somma == 21){
-            somma = 0;
+            soldiCorrenti += (int)(valorePuntata * 1.5);
+            /*somma = 0;
             sommaDealer = 0;
             valorePuntata = 0;
             listaCarte.clear();
             listaCarteDealer.clear();
             playerHand.getChildren().clear();
             dealerHand.getChildren().clear();
-            contatoreCarte = 2;
+            contatoreCarte = 2;*/
             manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
             manoLabel.setTextFill(Color.LIGHTGREEN);
-            soldiCorrenti += (int)(valorePuntata * 1.5);
             stai();
         }
     }
@@ -265,8 +277,11 @@ public class Controller {
         cartaGirata.setImage(generaCarta());
         listaCarteDealer.add(cartaGirata);
         contaCarteDealer();
-        while (sommaDealer < 17 && somma <= 21){
+        while (sommaDealer < 17){
             pescaCartaDealer();
+            if(sommaDealer > 21){
+                break;
+            }
         }
     }
 
@@ -327,6 +342,7 @@ public class Controller {
             carta.setPreserveRatio(true);
             playerHand.getChildren().add(carta);
             listaCarte.add(carta);
+            
             contaCarte();
             if(somma > 21){
                 manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
