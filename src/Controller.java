@@ -39,6 +39,7 @@ public class Controller {
     public Button buttonCarta;
     public Button buttonRaddoppia;
     public Button buttonStai;
+    public Button buttonProssimaMano;
 
     public Label soldiLabel;
 
@@ -71,6 +72,31 @@ public class Controller {
         stage.show();
     }
 
+    public void nuovaPartita(ActionEvent event) throws IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Nuova partita");
+        alert.setHeaderText("Stai per avviare una nuova partita, perderai tutti i tuoi progressi");
+        alert.setContentText("Vuoi davvero continuare?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+    }
+
+    public void vincita(){
+        if(somma > sommaDealer && somma <= 21){
+            soldiCorrenti += (valorePuntata * 2);
+            soldiLabel.setText(soldiCorrenti + "€");
+        } else if (sommaDealer > 21 && somma <=21) {
+            soldiCorrenti += (valorePuntata * 2);
+            soldiLabel.setText(soldiCorrenti + "€");
+        }
+    }
+
 
     public void punta100(){
         valorePuntata = 100;
@@ -94,6 +120,13 @@ public class Controller {
         disable(manoLabel, false, 1);
         setDealerHandVisibile();
         setPlayerHandVisible();
+    }
+
+    public void prossimaMano(){
+        disable(buttonProssimaMano, false, 1);
+        if (somma > sommaDealer && somma <= 21) {
+            soldiCorrenti += (valorePuntata * 2);
+        }
     }
 
     private void setPlayerHandVisible(){
@@ -147,7 +180,6 @@ public class Controller {
         carta.setPreserveRatio(true);
         dealerHand.getChildren().add(carta);
         contaCarteDealer();
-        
         if (sommaDealer > 21) {
             manoDealerLabel.setText("Mano dealer: " + sommaDealer + " (Ha sballato!)");
             manoDealerLabel.setTextFill(Color.LIGHTGREEN);

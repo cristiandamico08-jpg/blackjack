@@ -40,7 +40,7 @@
             </Button>
          </children>
       </Pane>
-      <Button fx:id="buttonNuovaPartita" layoutX="95.0" layoutY="575.0" mnemonicParsing="false" onAction="#vaiAScena2" prefHeight="20.0" prefWidth="98.0" text="Nuova partita">
+      <Button fx:id="buttonNuovaPartita" layoutX="95.0" layoutY="575.0" mnemonicParsing="false" onAction="#nuovaPartita" prefHeight="20.0" prefWidth="98.0" text="Nuova partita">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -127,5 +127,10 @@
             <Font size="30.0" />
          </font>
       </Label>
+      <Button fx:id="buttonProssimaMano" layoutX="912.0" layoutY="635.0" mnemonicParsing="false" onAction="#prossimaMano" prefHeight="32.0" prefWidth="98.0" text="Prossima mano" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
