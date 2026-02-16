@@ -133,9 +133,6 @@ public class Controller {
         contatoreCarte++;
         soldiCorrenti -= valorePuntata;
         soldiLabel.setText(soldiCorrenti + "€");
-        /*buttonRaddoppia.setDisable(true);
-        buttonCarta.setDisable(true);
-        buttonStai.setDisable(true);*/
         stai();
         playerHand.setSpacing(-45);
         ImageView carta = new ImageView(generaCarta());
