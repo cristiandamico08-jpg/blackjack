@@ -128,7 +128,7 @@ public class Controller {
         playerHand.getChildren().add(carta);
         contaCarte();
         if(somma > 21){
-            manoLabel.setText("Hai sballato!");
+            manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
             manoLabel.setTextFill(Color.RED);
             stai();
         }
@@ -179,7 +179,7 @@ public class Controller {
         System.out.println("Il numero del testo e' " + numeroTesto);
         if(numeroTesto.equals("A") && somma + 11 > 21){
             numeroCarta = 1;
-        }else if(numeroTesto.equals("A") && somma + 11 < 21){
+        }else if(numeroTesto.equals("A") && somma + 11 <= 21){
             numeroCarta = 11;
         } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
             numeroCarta = 10;
