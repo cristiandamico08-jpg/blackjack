@@ -49,6 +49,8 @@ public class Controller {
 
     private Integer soldiCorrenti = 1000; 
 
+    boolean playerSballato; 
+
     boolean cartaDealerGirata;
     int somma = 0;
     int sommaDealer = 0;
@@ -132,29 +134,9 @@ public class Controller {
         cartaGirata.setImage(generaCarta());
         listaCarteDealer.add(cartaGirata);
         contaCarteDealer();
-        while (sommaDealer < 17){
+        while (sommaDealer < 17 && playerSballato == false){
             pescaCartaDealer();
         }
-    }
-
-    private void calcolaValoreCartaDealer(ImageView carta){
-        String immagine = carta.getImage().getUrl();
-        String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
-        String[] parti = nomeFile.split("@");
-        String numeroTesto = parti[0].substring(0, 1);
-        Integer numeroCarta = 0;
-        System.out.println("Il numero del testo e' " + numeroTesto);
-        if(numeroTesto.equals("A") && sommaDealer + 11 > 21){
-            numeroCarta = 1;
-        }else if(numeroTesto.equals("A") && sommaDealer + 11 <= 21){
-            numeroCarta = 11;
-        } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
-            numeroCarta = 10;
-        } else{
-            numeroCarta = Integer.parseInt(numeroTesto);
-        }
-        System.out.println(numeroCarta);
-        sommaDealer += numeroCarta;
     }
 
     public void pescaCartaDealer(){
@@ -191,6 +173,7 @@ public class Controller {
         contaCarte();
         if(somma > 21){
             manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
+            playerSballato = true;
             manoLabel.setTextFill(Color.RED);
             stai();
         }
@@ -213,6 +196,7 @@ public class Controller {
         contaCarte();
         if(somma > 21){
             manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
+            playerSballato = true;
             manoLabel.setTextFill(Color.RED);
             stai();
         }
@@ -239,38 +223,54 @@ public class Controller {
         return carta;
     }
 
-    private void calcolaValoreCarta(ImageView carta){
-        String immagine = carta.getImage().getUrl();
-        String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
-        String[] parti = nomeFile.split("@");
-        String numeroTesto = parti[0].substring(0, 1);
-        Integer numeroCarta = 0;
-        //System.out.println("Il numero del testo e' " + numeroTesto);
-        if(numeroTesto.equals("A") && somma + 11 > 21){
-            numeroCarta = 1;
-        }else if(numeroTesto.equals("A") && somma + 11 <= 21){
-            numeroCarta = 11;
-        } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
-            numeroCarta = 10;
-        } else{
-            numeroCarta = Integer.parseInt(numeroTesto);
-        }
-        //System.out.println(numeroCarta);
-        somma += numeroCarta;
-    }
-
     private void contaCarteDealer(){
+        int numeroAssi = 0;
         sommaDealer = 0;
         for (ImageView carta : listaCarteDealer) {          
-            calcolaValoreCartaDealer(carta);
+            String immagine = carta.getImage().getUrl();
+            String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
+            String[] parti = nomeFile.split("@");
+            String numeroTesto = parti[0].substring(0, 1);
+            Integer numeroCarta = 0;
+            if(numeroTesto.equals("A")){
+                numeroCarta = 11;
+                numeroAssi++;
+            } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
+                numeroCarta = 10;
+            } else{
+                numeroCarta = Integer.parseInt(numeroTesto);
+            }
+            sommaDealer += numeroCarta;
+            while (sommaDealer > 21 && numeroAssi > 0) {
+                sommaDealer -= 10;
+                numeroAssi--;
+            }
         }
         manoDealerLabel.setText("Mano dealer: " + sommaDealer);
     }
 
     private void contaCarte(){
+        int numeroAssi = 0;
         somma = 0;
         for (ImageView carta : listaCarte) {          
-            calcolaValoreCarta(carta);
+            String immagine = carta.getImage().getUrl();
+            String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
+            String[] parti = nomeFile.split("@");
+            String numeroTesto = parti[0].substring(0, 1);
+            Integer numeroCarta = 0;
+            if(numeroTesto.equals("A")){
+                numeroCarta = 11;
+                numeroAssi++;
+            } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
+                numeroCarta = 10;
+            } else{
+                numeroCarta = Integer.parseInt(numeroTesto);
+            }
+            somma += numeroCarta;
+            while(somma > 21 && numeroAssi > 0){
+                somma -= 10;
+                numeroAssi--;
+            }
         }
         manoLabel.setText("La tua mano: " + somma);
     }
