@@ -16,6 +16,16 @@ import java.util.Random;
 public class Controller {
     @FXML
 
+    public ImageView sfondoMenu = new ImageView(new Image("file:assets/img/altro/sfondoMenu.png"));
+    public ImageView sfondoGioco = new ImageView(new Image("file:assets/img/altro/sfondoGioco.png"));
+    public ImageView dealer = new ImageView(new Image("file:assets/img/altro/dealer.png"));
+    public ImageView cartaMazzo1 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+    public ImageView cartaMazzo2 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+    public ImageView cartaMazzo3 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+    public ImageView cartaMazzo4 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+
+
+
     private Stage stage;
     private Scene scene;
     public ImageView myImageView;

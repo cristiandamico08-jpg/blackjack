@@ -47,7 +47,7 @@
       </Button>
       <Pane layoutX="961.0" layoutY="107.0">
          <children>
-            <ImageView fx:id="myImageView" fitHeight="144.0" fitWidth="101.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cartaMazzo4" fitHeight="144.0" fitWidth="101.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/carte/dorso/back.png" />
                </image>
@@ -55,7 +55,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="myImageView1" fitHeight="144.0" fitWidth="101.0" layoutX="7.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cartaMazzo3" fitHeight="144.0" fitWidth="101.0" layoutX="7.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/carte/dorso/back.png" />
                </image>
@@ -63,7 +63,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="myImageView2" fitHeight="144.0" fitWidth="101.0" layoutX="13.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cartaMazzo2" fitHeight="144.0" fitWidth="101.0" layoutX="13.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/carte/dorso/back.png" />
                </image>
@@ -71,7 +71,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="myImageView11" fitHeight="144.0" fitWidth="101.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="cartaMazzo1" fitHeight="144.0" fitWidth="101.0" layoutX="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/img/carte/dorso/back.png" />
                </image>
