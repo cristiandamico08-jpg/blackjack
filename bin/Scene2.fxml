@@ -80,7 +80,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Label fx:id="soldiLabel" layoutX="101.0" layoutY="642.0" prefHeight="26.0" prefWidth="86.0" text="1000€" textFill="WHITE">
+      <Label fx:id="soldiLabel" layoutX="101.0" layoutY="642.0" prefHeight="46.0" prefWidth="284.0" text="1000€" textFill="WHITE" wrapText="true">
          <font>
             <Font size="30.0" />
          </font>
