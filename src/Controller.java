@@ -17,7 +17,9 @@ public class Controller {
     @FXML
 
     public ImageView sfondoMenu = new ImageView(new Image("file:assets/img/altro/sfondoMenu.png"));
-    public ImageView sfondoGioco;
+    public ImageView sfondoGioco = new ImageView(
+        new Image(getClass().getResource("/assets/img/altro/sfondoGioco.png").toExternalForm())
+    );
     public ImageView dealer = new ImageView(new Image("file:assets/img/altro/dealer.png"));
     public ImageView cartaMazzo1 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
     public ImageView cartaMazzo2 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
@@ -70,7 +72,6 @@ public class Controller {
     }
 
     public void vaiAScena2(ActionEvent event) throws IOException {
-        sfondoGioco = new ImageView(new Image("file:assets/img/altro/sfondoGioco.png"));
         if(sfondoGioco == null){
             System.out.println("non ha caricato l'immagine");
         }
