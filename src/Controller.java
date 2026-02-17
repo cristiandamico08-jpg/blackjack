@@ -16,18 +16,6 @@ import java.util.Random;
 public class Controller {
     @FXML
 
-    public ImageView sfondoMenu = new ImageView(new Image("file:assets/img/altro/sfondoMenu.png"));
-    public ImageView sfondoGioco = new ImageView(
-        new Image(getClass().getResource("/assets/img/altro/sfondoGioco.png").toExternalForm())
-    );
-    public ImageView dealer = new ImageView(new Image("file:assets/img/altro/dealer.png"));
-    public ImageView cartaMazzo1 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-    public ImageView cartaMazzo2 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-    public ImageView cartaMazzo3 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-    public ImageView cartaMazzo4 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-
-
-
     private Stage stage;
     private Scene scene;
     public ImageView myImageView;
@@ -72,14 +60,6 @@ public class Controller {
     }
 
     public void vaiAScena2(ActionEvent event) throws IOException {
-        if(sfondoGioco == null){
-            System.out.println("non ha caricato l'immagine");
-        }
-        dealer = new ImageView(new Image("file:assets/img/altro/dealer.png"));
-        cartaMazzo1 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-        cartaMazzo2 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-        cartaMazzo3 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-        cartaMazzo4 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
         Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
