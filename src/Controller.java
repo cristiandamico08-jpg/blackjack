@@ -195,7 +195,7 @@ public class Controller {
         
 
         soldiLabel.setText(soldiCorrenti + "€");
-        if (soldiCorrenti <= 0) {
+        if (soldiCorrenti <= 0 || soldiCorrenti < 100) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Hai perso");
             alert.setHeaderText("Hai finito i soldi");
