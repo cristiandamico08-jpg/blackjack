@@ -17,7 +17,7 @@ public class Controller {
     @FXML
 
     public ImageView sfondoMenu = new ImageView(new Image("file:assets/img/altro/sfondoMenu.png"));
-    public ImageView sfondoGioco = new ImageView(new Image("file:assets/img/altro/sfondoGioco.png"));
+    public ImageView sfondoGioco;
     public ImageView dealer = new ImageView(new Image("file:assets/img/altro/dealer.png"));
     public ImageView cartaMazzo1 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
     public ImageView cartaMazzo2 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
@@ -70,11 +70,44 @@ public class Controller {
     }
 
     public void vaiAScena2(ActionEvent event) throws IOException {
+        sfondoGioco = new ImageView(new Image("file:assets/img/altro/sfondoGioco.png"));
+        if(sfondoGioco == null){
+            System.out.println("non ha caricato l'immagine");
+        }
+        dealer = new ImageView(new Image("file:assets/img/altro/dealer.png"));
+        cartaMazzo1 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+        cartaMazzo2 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+        cartaMazzo3 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+        cartaMazzo4 = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
         Parent root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void tornaAlMenu(ActionEvent event) throws IOException {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Torna al menù");
+        alert.setHeaderText("Stai per tornare al menù");
+        alert.setContentText("Vuoi davvero continuare?");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            somma = 0;
+            sommaDealer = 0;
+            valorePuntata = 0;
+            listaCarte.clear();
+            listaCarteDealer.clear();
+            playerHand.getChildren().clear();
+            dealerHand.getChildren().clear();
+            contatoreCarte = 2;
+            Parent root = FXMLLoader.load(getClass().getResource("Scene1.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+        }
     }
 
     public void nuovaPartita(ActionEvent event) throws IOException {

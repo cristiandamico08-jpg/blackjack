@@ -17,7 +17,7 @@
             <Image url="@../assets/img/altro/sfondoGioco.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonMenu" layoutX="95.0" layoutY="616.0" mnemonicParsing="false" onAction="#vaiAScena1" prefHeight="20.0" prefWidth="98.0" text="Torna al menu">
+      <Button fx:id="buttonMenu" layoutX="95.0" layoutY="616.0" mnemonicParsing="false" onAction="#tornaAlMenu" prefHeight="20.0" prefWidth="98.0" text="Torna al menu">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
