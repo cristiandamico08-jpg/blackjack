@@ -250,7 +250,7 @@ public class Controller {
             playerHand.getChildren().add(carta);
         }
         
-        contaCarte();
+        manoLabel.setText("La tua mano: " + contaCarte(listaCarte, somma));
         if(somma == 21){
             soldiCorrenti += (int)(valorePuntata * 1.5);
             manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
@@ -273,7 +273,7 @@ public class Controller {
         cartaDealerGirata = false;
         cartaGirata.setImage(generaCarta());
         listaCarteDealer.add(cartaGirata);
-        contaCarteDealer();
+        manoDealerLabel.setText("Mano dealer: " + contaCarte(listaCarteDealer, sommaDealer));
         while (sommaDealer < 17){
             pescaCartaDealer();
             if(sommaDealer > 21){
@@ -289,7 +289,7 @@ public class Controller {
         carta.setFitHeight(125);
         carta.setPreserveRatio(true);
         dealerHand.getChildren().add(carta);
-        contaCarteDealer();
+        manoDealerLabel.setText("Mano dealer: " + contaCarte(listaCarteDealer, sommaDealer));
         if (sommaDealer > 21) {
             manoDealerLabel.setText("Mano dealer: " + sommaDealer + " (Ha sballato!)");
             manoDealerLabel.setTextFill(Color.LIGHTGREEN);
@@ -312,7 +312,7 @@ public class Controller {
         carta.setFitHeight(125);
         carta.setPreserveRatio(true);
         playerHand.getChildren().add(carta);
-        contaCarte();
+        manoLabel.setText("La tua mano: " + contaCarte(listaCarte, somma));
         if(somma > 21){
             manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
             manoLabel.setTextFill(Color.RED);
@@ -340,7 +340,7 @@ public class Controller {
             playerHand.getChildren().add(carta);
             listaCarte.add(carta);
             
-            contaCarte();
+            manoLabel.setText("La tua mano: " + contaCarte(listaCarte, somma));
             if(somma > 21){
                 manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
                 manoLabel.setTextFill(Color.RED);
@@ -372,36 +372,9 @@ public class Controller {
         return carta;
     }
 
-    private void contaCarteDealer(){
+    private int contaCarte(ArrayList<ImageView> carte, int somma){
         int numeroAssi = 0;
-        sommaDealer = 0;
-        for (ImageView carta : listaCarteDealer) {          
-            String immagine = carta.getImage().getUrl();
-            String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
-            String[] parti = nomeFile.split("@");
-            String numeroTesto = parti[0].substring(0, 1);
-            Integer numeroCarta = 0;
-            if(numeroTesto.equals("A")){
-                numeroCarta = 11;
-                numeroAssi++;
-            } else if(numeroTesto.equals("T") || numeroTesto.equals("J")  || numeroTesto.equals("Q")  || numeroTesto.equals("K")){
-                numeroCarta = 10;
-            } else{
-                numeroCarta = Integer.parseInt(numeroTesto);
-            }
-            sommaDealer += numeroCarta;
-            while (sommaDealer > 21 && numeroAssi > 0) {
-                sommaDealer -= 10;
-                numeroAssi--;
-            }
-        }
-        manoDealerLabel.setText("Mano dealer: " + sommaDealer);
-    }
-
-    private void contaCarte(){
-        int numeroAssi = 0;
-        somma = 0;
-        for (ImageView carta : listaCarte) {          
+        for(ImageView carta : carte){
             String immagine = carta.getImage().getUrl();
             String nomeFile = immagine.substring(immagine.lastIndexOf("/") + 1);
             String[] parti = nomeFile.split("@");
@@ -421,7 +394,7 @@ public class Controller {
                 numeroAssi--;
             }
         }
-        manoLabel.setText("La tua mano: " + somma);
+        return somma;
     }
 
     public void esci() {
