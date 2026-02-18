@@ -326,6 +326,7 @@ public class Controller {
 
 
     private void setPlayerHandVisible(){
+        manoLabel.setText("La tua mano: ");
         disable(playerHand, false, 1);
         disable(bottoni, false, 1);
         soldiCorrenti -= valorePuntata;
