@@ -8,6 +8,9 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.fxml.*;
+import javafx.geometry.Bounds;
+import javafx.animation.*;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -45,6 +48,8 @@ public class Controller {
     private ArrayList<ImageView> listaCarte = new ArrayList<ImageView>();
 
     private Integer soldiCorrenti = 1000; 
+
+    public ImageView cartaMazzo1;
 
     boolean raddoppio;
     boolean cartaDealerGirata;
@@ -236,27 +241,105 @@ public class Controller {
         }
     }
 
+
+    private void animaCartaVersoPlayer(Image cartaImg) {
+        buttonCarta.setDisable(true);
+        ImageView cartaAnimata = new ImageView(cartaImg);
+        cartaAnimata.setFitHeight(125);
+        cartaAnimata.setPreserveRatio(true);
+
+        Pane rootPane = (Pane) playerHand.getScene().getRoot();
+        rootPane.getChildren().add(cartaAnimata);
+
+        // Start position: from the deck
+        Bounds mazzoBounds = cartaMazzo1.localToScene(cartaMazzo1.getBoundsInLocal());
+        Bounds mazzoRoot = rootPane.sceneToLocal(mazzoBounds);
+
+        cartaAnimata.setLayoutX(mazzoRoot.getMinX());
+        cartaAnimata.setLayoutY(mazzoRoot.getMinY());
+
+        // Target position: center of playerHand
+        Bounds handBounds = playerHand.localToScene(playerHand.getBoundsInLocal());
+        Bounds handRoot = rootPane.sceneToLocal(handBounds);
+
+        double targetX = handRoot.getMinX() + handRoot.getWidth() / 2 - cartaAnimata.getFitWidth() / 2;
+        double targetY = handRoot.getMinY() + handRoot.getHeight() / 2 - cartaAnimata.getFitHeight() / 2;
+
+        TranslateTransition tt = new TranslateTransition(Duration.millis(500), cartaAnimata);
+        tt.setToX(targetX - cartaAnimata.getLayoutX());
+        tt.setToY(targetY - cartaAnimata.getLayoutY());
+
+        ScaleTransition st = new ScaleTransition(Duration.millis(500), cartaAnimata);
+        st.setFromX(0.3);
+        st.setFromY(0.3);
+        st.setToX(1);
+        st.setToY(1);
+
+        ParallelTransition pt = new ParallelTransition(tt, st);
+
+        pt.setOnFinished(e -> {
+
+            rootPane.getChildren().remove(cartaAnimata);
+
+            ImageView finalCard = new ImageView(cartaImg);
+            finalCard.setFitHeight(125);
+            finalCard.setPreserveRatio(true);
+
+            listaCarte.add(finalCard);
+            playerHand.getChildren().add(finalCard);
+
+            contaCarte();
+
+            // ✅ BLACKJACK CHECK (only on first 2 cards)
+            if (listaCarte.size() == 2 && somma == 21) {
+                int bonus = (int)(valorePuntata * 2.5);
+                soldiCorrenti += bonus;
+                soldiLabel.setText(soldiCorrenti + "€");
+
+                manoLabel.setText("La tua mano: 21 (BlackJack!)");
+                manoLabel.setTextFill(Color.LIGHTGREEN);
+
+                stai();
+                return;
+            }
+
+            // ✅ BUST CHECK
+            if (somma > 21) {
+                manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
+                manoLabel.setTextFill(Color.RED);
+                stai();
+                return;
+            }
+
+            // ✅ DOUBLE logic → auto stand after 1 card
+            if (raddoppio) {
+                stai();
+            }
+
+            if (somma < 21 && !raddoppio) {
+                buttonCarta.setDisable(false);
+            }
+        });
+
+        pt.play();
+    }
+
+
     private void setPlayerHandVisible(){
         disable(playerHand, false, 1);
         disable(bottoni, false, 1);
         soldiCorrenti -= valorePuntata;
         playerHand.setSpacing(-45);
         soldiLabel.setText(soldiCorrenti + "€");
-        for (int i = 0; i < 2; i++) {
-            ImageView carta = new ImageView(generaCarta());
-            listaCarte.add(carta);
-            carta.setFitHeight(125);
-            carta.setPreserveRatio(true);
-            playerHand.getChildren().add(carta);
-        }
-        
-        contaCarte();
-        if(somma == 21){
-            soldiCorrenti += (int)(valorePuntata * 1.5);
-            manoLabel.setText("La tua mano e': " + somma + " (BlackJack)");
-            manoLabel.setTextFill(Color.LIGHTGREEN);
-            stai();
-        }
+        Image first = generaCarta();
+        Image second = generaCarta();
+
+        animaCartaVersoPlayer(first);
+
+        PauseTransition pause = new PauseTransition(Duration.millis(300));
+        pause.setOnFinished(e -> animaCartaVersoPlayer(second));
+        pause.play();
+
     }
 
     private void setDealerHandVisibile(){
@@ -307,47 +390,31 @@ public class Controller {
             buttonStai.setDisable(true);
         }
         playerHand.setSpacing(-45);
-        ImageView carta = new ImageView(generaCarta());
-        listaCarte.add(carta);
-        carta.setFitHeight(125);
-        carta.setPreserveRatio(true);
-        playerHand.getChildren().add(carta);
-        contaCarte();
-        if(somma > 21){
-            manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
-            manoLabel.setTextFill(Color.RED);
-            stai();
-        }
-        if(somma == 21){
-            stai();
-        }
+        Image cartaImg = generaCarta();
+        animaCartaVersoPlayer(cartaImg);
+        
     }
 
     public void pescaCartaRaddoppia(){
-        if(soldiCorrenti - valorePuntata < 0){
+
+        if (soldiCorrenti < valorePuntata) {
             buttonRaddoppia.setDisable(true);
-        } else {
-            buttonRaddoppia.setDisable(false);
-            raddoppio = true;
-            contatoreCarte++;
-            soldiCorrenti -= valorePuntata;
-            soldiLabel.setText(soldiCorrenti + "€");
-            stai();
-            playerHand.setSpacing(-45);
-            ImageView carta = new ImageView(generaCarta());
-            carta.setFitHeight(125);
-            carta.setPreserveRatio(true);
-            playerHand.getChildren().add(carta);
-            listaCarte.add(carta);
-            
-            contaCarte();
-            if(somma > 21){
-                manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
-                manoLabel.setTextFill(Color.RED);
-                stai();
-            }
+            return;
         }
+
+        raddoppio = true;
+        contatoreCarte++;
+
+        soldiCorrenti -= valorePuntata;
+        soldiLabel.setText(soldiCorrenti + "€");
+
+        Image cartaImg = generaCarta();
+        animaCartaVersoPlayer(cartaImg);
+
+        buttonCarta.setDisable(true);
+        buttonRaddoppia.setDisable(true);
     }
+
 
     public void stai(){
         buttonRaddoppia.setDisable(true);
