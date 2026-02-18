@@ -277,11 +277,11 @@ public class Controller {
         double targetX = handRoot.getMinX() + handRoot.getWidth() / 2 - cartaAnimata.getFitWidth() / 2;
         double targetY = handRoot.getMinY() + handRoot.getHeight() / 2 - cartaAnimata.getFitHeight() / 2;
 
-        TranslateTransition tt = new TranslateTransition(Duration.millis(500), cartaAnimata);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(300), cartaAnimata);
         tt.setToX(targetX - cartaAnimata.getLayoutX());
         tt.setToY(targetY - cartaAnimata.getLayoutY());
 
-        ScaleTransition st = new ScaleTransition(Duration.millis(500), cartaAnimata);
+        ScaleTransition st = new ScaleTransition(Duration.millis(300), cartaAnimata);
         st.setFromX(0.3);
         st.setFromY(0.3);
         st.setToX(1);
@@ -383,11 +383,11 @@ public class Controller {
         double targetX = handRoot.getMinX() + handRoot.getWidth() / 2 - cartaAnimata.getFitWidth() / 2;
         double targetY = handRoot.getMinY() + handRoot.getHeight() / 2 - cartaAnimata.getFitHeight() / 2;
 
-        TranslateTransition tt = new TranslateTransition(Duration.millis(500), cartaAnimata);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(300), cartaAnimata);
         tt.setToX(targetX - cartaAnimata.getLayoutX());
         tt.setToY(targetY - cartaAnimata.getLayoutY());
 
-        ScaleTransition st = new ScaleTransition(Duration.millis(500), cartaAnimata);
+        ScaleTransition st = new ScaleTransition(Duration.millis(300), cartaAnimata);
         st.setFromX(0.3);
         st.setFromY(0.3);
         st.setToX(1);
