@@ -251,14 +251,12 @@ public class Controller {
         Pane rootPane = (Pane) playerHand.getScene().getRoot();
         rootPane.getChildren().add(cartaAnimata);
 
-        // Start position: from the deck
         Bounds mazzoBounds = cartaMazzo1.localToScene(cartaMazzo1.getBoundsInLocal());
         Bounds mazzoRoot = rootPane.sceneToLocal(mazzoBounds);
 
         cartaAnimata.setLayoutX(mazzoRoot.getMinX());
         cartaAnimata.setLayoutY(mazzoRoot.getMinY());
 
-        // Target position: center of playerHand
         Bounds handBounds = playerHand.localToScene(playerHand.getBoundsInLocal());
         Bounds handRoot = rootPane.sceneToLocal(handBounds);
 
@@ -290,7 +288,6 @@ public class Controller {
 
             contaCarte();
 
-            // ✅ BLACKJACK CHECK (only on first 2 cards)
             if (listaCarte.size() == 2 && somma == 21) {
                 int bonus = (int)(valorePuntata * 2.5);
                 soldiCorrenti += bonus;
@@ -306,11 +303,10 @@ public class Controller {
             if (somma == 21) {
                 manoLabel.setText("La tua mano: 21");
                 manoLabel.setTextFill(Color.LIGHTGREEN);
-                stai(); // automatically stand
+                stai(); 
                 return;
             }
 
-            // ✅ BUST CHECK
             if (somma > 21) {
                 manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
                 manoLabel.setTextFill(Color.RED);
@@ -318,7 +314,6 @@ public class Controller {
                 return;
             }
 
-            // ✅ DOUBLE logic → auto stand after 1 card
             if (raddoppio) {
                 stai();
             }
