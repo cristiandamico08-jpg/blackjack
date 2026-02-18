@@ -303,6 +303,13 @@ public class Controller {
                 return;
             }
 
+            if (somma == 21) {
+                manoLabel.setText("La tua mano: 21");
+                manoLabel.setTextFill(Color.LIGHTGREEN);
+                stai(); // automatically stand
+                return;
+            }
+
             // ✅ BUST CHECK
             if (somma > 21) {
                 manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
@@ -393,7 +400,6 @@ public class Controller {
         playerHand.setSpacing(-45);
         Image cartaImg = generaCarta();
         animaCartaVersoPlayer(cartaImg);
-        
     }
 
     public void pescaCartaRaddoppia(){
