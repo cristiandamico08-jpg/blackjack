@@ -6,6 +6,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 import javafx.fxml.*;
 import javafx.geometry.Bounds;
@@ -128,8 +129,12 @@ public class Controller {
             valorePuntata = 100;
             disable(puntataSelect, true, 0);
             disable(manoLabel, false, 1);
-            setPlayerHandVisible();
-            setDealerHandVisibile();
+            distribuisciCarteIniziali();
+            disable(bottoni, false, 1);
+            disable(manoLabel, false, 1);
+            disable(manoDealerLabel, false, 1);
+            playerHand.setSpacing(-45);
+            dealerHand.setSpacing(-45);
         } else {
             button100.setDisable(true);
             button500.setDisable(true);
@@ -144,8 +149,12 @@ public class Controller {
             valorePuntata = 250;
             disable(puntataSelect, true, 0);
             disable(manoLabel, false, 1);
-            setDealerHandVisibile();
-            setPlayerHandVisible();
+            distribuisciCarteIniziali();
+            disable(bottoni, false, 1);
+            disable(manoLabel, false, 1);
+            disable(manoDealerLabel, false, 1);
+            playerHand.setSpacing(-45);
+            dealerHand.setSpacing(-45);
         } else {
             button500.setDisable(true);
             button250.setDisable(true);
@@ -158,8 +167,12 @@ public class Controller {
             valorePuntata = 500;
             disable(puntataSelect, true, 0);
             disable(manoLabel, false, 1);
-            setDealerHandVisibile();
-            setPlayerHandVisible();
+            distribuisciCarteIniziali();
+            disable(bottoni, false, 1);
+            disable(manoLabel, false, 1);
+            disable(manoDealerLabel, false, 1);
+            playerHand.setSpacing(-45);
+            dealerHand.setSpacing(-45);
         } else {
             button500.setDisable(true);
         }
@@ -215,6 +228,11 @@ public class Controller {
                 stage.show();
             }
         } else {
+            manoLabel.setText("La tua mano: ");
+            manoLabel.setTextFill(Color.WHITE);
+
+            manoDealerLabel.setText("Mano dealer: ");
+            manoDealerLabel.setTextFill(Color.WHITE);
             disable(buttonProssimaMano, true, 0);
             somma = 0;
             sommaDealer = 0;
@@ -234,13 +252,9 @@ public class Controller {
             disable(manoLabel, true, 0);
             disable(manoDealerLabel, true, 0);
             disable(puntataSelect, false, 1);
-            if(valorePuntata == 100 || valorePuntata == 250 || valorePuntata == 500){
-                setPlayerHandVisible();
-                setDealerHandVisibile();
-            }
+            
         }
     }
-
 
     private void animaCartaVersoPlayer(Image cartaImg) {
         buttonCarta.setDisable(true);
@@ -302,7 +316,6 @@ public class Controller {
 
             if (somma == 21) {
                 manoLabel.setText("La tua mano: 21");
-                manoLabel.setTextFill(Color.LIGHTGREEN);
                 stai(); 
                 return;
             }
@@ -326,45 +339,115 @@ public class Controller {
         pt.play();
     }
 
-
-    private void setPlayerHandVisible(){
-        manoLabel.setText("La tua mano: ");
-        disable(playerHand, false, 1);
-        disable(bottoni, false, 1);
+    private void distribuisciCarteIniziali() {
         soldiCorrenti -= valorePuntata;
-        playerHand.setSpacing(-45);
         soldiLabel.setText(soldiCorrenti + "€");
-        Image first = generaCarta();
-        Image second = generaCarta();
 
-        animaCartaVersoPlayer(first);
+        Image playerFirst = generaCarta();
+        Image dealerFirst = generaCarta();
+        Image playerSecond = generaCarta();
+        Image dealerSecond = new Image("file:assets/img/carte/dorso/back.png");
 
-        PauseTransition pause = new PauseTransition(Duration.millis(300));
-        pause.setOnFinished(e -> animaCartaVersoPlayer(second));
-        pause.play();
+        animaCartaVersoPlayer(playerFirst);
 
+        PauseTransition pause1 = new PauseTransition(Duration.millis(600));
+        pause1.setOnFinished(e -> animaCartaVersoDealer(dealerFirst, false));
+        pause1.play();
+
+        PauseTransition pause2 = new PauseTransition(Duration.millis(1200));
+        pause2.setOnFinished(e -> animaCartaVersoPlayer(playerSecond));
+        pause2.play();
+
+        PauseTransition pause3 = new PauseTransition(Duration.millis(1800));
+        pause3.setOnFinished(e -> animaCartaVersoDealer(dealerSecond, true));
+        pause3.play();
     }
 
-    private void setDealerHandVisibile(){
-        pescaCartaDealer();
-        cartaGirata = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
-        cartaDealerGirata = true;
-        cartaGirata.setFitHeight(125);
-        cartaGirata.setPreserveRatio(true);
-        dealerHand.getChildren().add(cartaGirata);
-        disable(manoDealerLabel, false, 1);
-    }
+    private void animaCartaVersoDealer(Image cartaImg, boolean girata) {
+        ImageView cartaAnimata = new ImageView(cartaImg);
+        cartaAnimata.setFitHeight(125);
+        cartaAnimata.setPreserveRatio(true);
 
-    private void giraCarta(){
-        cartaDealerGirata = false;
-        cartaGirata.setImage(generaCarta());
-        listaCarteDealer.add(cartaGirata);
-        contaCarteDealer();
-        while (sommaDealer < 17){
-            pescaCartaDealer();
-            if(sommaDealer > 21){
-                break;
+        Pane rootPane = (Pane) dealerHand.getScene().getRoot();
+        rootPane.getChildren().add(cartaAnimata);
+
+        Bounds mazzoBounds = cartaMazzo1.localToScene(cartaMazzo1.getBoundsInLocal());
+        Bounds mazzoRoot = rootPane.sceneToLocal(mazzoBounds);
+
+        cartaAnimata.setLayoutX(mazzoRoot.getMinX());
+        cartaAnimata.setLayoutY(mazzoRoot.getMinY());
+
+        Bounds handBounds = dealerHand.localToScene(dealerHand.getBoundsInLocal());
+        Bounds handRoot = rootPane.sceneToLocal(handBounds);
+
+        double targetX = handRoot.getMinX() + handRoot.getWidth() / 2 - cartaAnimata.getFitWidth() / 2;
+        double targetY = handRoot.getMinY() + handRoot.getHeight() / 2 - cartaAnimata.getFitHeight() / 2;
+
+        TranslateTransition tt = new TranslateTransition(Duration.millis(500), cartaAnimata);
+        tt.setToX(targetX - cartaAnimata.getLayoutX());
+        tt.setToY(targetY - cartaAnimata.getLayoutY());
+
+        ScaleTransition st = new ScaleTransition(Duration.millis(500), cartaAnimata);
+        st.setFromX(0.3);
+        st.setFromY(0.3);
+        st.setToX(1);
+        st.setToY(1);
+
+        ParallelTransition pt = new ParallelTransition(tt, st);
+
+        pt.setOnFinished(e -> {
+            rootPane.getChildren().remove(cartaAnimata);
+            ImageView finalCard = new ImageView(cartaImg);
+            finalCard.setFitHeight(125);
+            finalCard.setPreserveRatio(true);
+            dealerHand.getChildren().add(finalCard);
+
+            if (!girata) {
+                listaCarteDealer.add(finalCard);
+                contaCarteDealer();
+            } else {
+                cartaGirata = finalCard;
+                cartaDealerGirata = true;
             }
+        });
+
+        pt.play();
+    }
+
+    private void giraCarta() {
+        cartaDealerGirata = false;
+
+        RotateTransition rotateOut = new RotateTransition(Duration.millis(250), cartaGirata);
+        rotateOut.setAxis(Rotate.Y_AXIS);
+        rotateOut.setFromAngle(0);
+        rotateOut.setToAngle(90);
+
+        RotateTransition rotateIn = new RotateTransition(Duration.millis(250), cartaGirata);
+        rotateIn.setAxis(Rotate.Y_AXIS);
+        rotateIn.setFromAngle(90);
+        rotateIn.setToAngle(0);
+
+        rotateOut.setOnFinished(e -> {
+            Image nuovaCarta = generaCarta();
+            cartaGirata.setImage(nuovaCarta);
+            listaCarteDealer.add(cartaGirata);
+            contaCarteDealer();
+            rotateIn.play();
+        });
+
+        rotateIn.setOnFinished(e -> {
+            pescaDealerFinoA17();
+        });
+
+        rotateOut.play();
+    }
+
+    private void pescaDealerFinoA17() {
+        if (sommaDealer < 17) {
+            animaCartaVersoDealer(generaCarta(), false);
+            PauseTransition pause = new PauseTransition(Duration.millis(550));
+            pause.setOnFinished(e -> pescaDealerFinoA17());
+            pause.play();
         }
     }
 
@@ -432,7 +515,7 @@ public class Controller {
         
         int numeroN = random.nextInt(13) + 1;
         String numeroCarta = numeroN == 1 ? "A" : numeroN == 10 ? "T" : numeroN == 11 ? "J" : numeroN == 12 ? "Q" : numeroN == 13 ? "K" : String.valueOf(numeroN);
-        int semeN = random.nextInt(3) + 1;
+        int semeN = random.nextInt(4) + 1;
         
         String semeCarta = semeN == 1 ? "S" : semeN == 2 ? "C" : semeN == 3 ? "H" : "D";
         String fileCarta = "file:assets/img/carte/fronte/" + numeroCarta + semeCarta + "@1x.png";
@@ -464,7 +547,13 @@ public class Controller {
                 numeroAssi--;
             }
         }
-        manoDealerLabel.setText("Mano dealer: " + sommaDealer);
+        if (sommaDealer > 21) {
+            manoDealerLabel.setText("Mano dealer: " + sommaDealer + " (Ha sballato!)");
+            manoDealerLabel.setTextFill(Color.LIGHTGREEN);
+        } else {
+            manoDealerLabel.setText("Mano dealer: " + sommaDealer);
+            manoDealerLabel.setTextFill(Color.WHITE);
+        }
     }
 
     private void contaCarte(){
@@ -490,7 +579,12 @@ public class Controller {
                 numeroAssi--;
             }
         }
-        manoLabel.setText("La tua mano: " + somma);
+        if(somma > 21){
+            manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
+        } else {
+            manoLabel.setText("La tua mano: " + somma);
+        }
+        
     }
 
     public void esci() {
