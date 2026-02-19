@@ -54,6 +54,7 @@ public class Controller {
 
     boolean raddoppio;
     boolean cartaDealerGirata;
+    boolean finitoDiDistribuireCarteIniziali = false;
     int somma = 0;
     int sommaDealer = 0;
 
@@ -127,14 +128,14 @@ public class Controller {
             button500.setDisable(false);
             button250.setDisable(false);
             valorePuntata = 100;
-            disable(puntataSelect, true, 0);
-            disable(manoLabel, false, 1);
-            distribuisciCarteIniziali();
-            disable(bottoni, false, 1);
-            disable(manoLabel, false, 1);
-            disable(manoDealerLabel, false, 1);
+            disable(puntataSelect, true, 0.0);
+            disable(manoLabel, false, 1.0);
+            disable(bottoni, false, 1.0);
+            disable(manoLabel, false, 1.0);
+            disable(manoDealerLabel, false, 1.0);
             playerHand.setSpacing(-45);
             dealerHand.setSpacing(-45);
+            distribuisciCarteIniziali();
         } else {
             button100.setDisable(true);
             button500.setDisable(true);
@@ -147,14 +148,14 @@ public class Controller {
             button500.setDisable(false);
             button250.setDisable(false);
             valorePuntata = 250;
-            disable(puntataSelect, true, 0);
-            disable(manoLabel, false, 1);
-            distribuisciCarteIniziali();
-            disable(bottoni, false, 1);
-            disable(manoLabel, false, 1);
-            disable(manoDealerLabel, false, 1);
+            disable(puntataSelect, true, 0.0);
+            disable(manoLabel, false, 1.0);
+            disable(bottoni, false, 1.0);
+            disable(manoLabel, false, 1.0);
+            disable(manoDealerLabel, false, 1.0);
             playerHand.setSpacing(-45);
             dealerHand.setSpacing(-45);
+            distribuisciCarteIniziali();
         } else {
             button500.setDisable(true);
             button250.setDisable(true);
@@ -165,14 +166,14 @@ public class Controller {
         if(soldiCorrenti >= 500){
             button500.setDisable(false);
             valorePuntata = 500;
-            disable(puntataSelect, true, 0);
-            disable(manoLabel, false, 1);
-            distribuisciCarteIniziali();
-            disable(bottoni, false, 1);
-            disable(manoLabel, false, 1);
-            disable(manoDealerLabel, false, 1);
+            disable(puntataSelect, true, 0.0);
+            disable(manoLabel, false, 1.0);
+            disable(bottoni, false, 1.0);
+            disable(manoLabel, false, 1.0);
+            disable(manoDealerLabel, false, 1.0);
             playerHand.setSpacing(-45);
             dealerHand.setSpacing(-45);
+            distribuisciCarteIniziali();
         } else {
             button500.setDisable(true);
         }
@@ -202,6 +203,7 @@ public class Controller {
                 somma = 0;
                 sommaDealer = 0;
                 valorePuntata = 0;
+                finitoDiDistribuireCarteIniziali = false;
                 listaCarte.clear();
                 listaCarteDealer.clear();
                 playerHand.getChildren().clear();
@@ -233,10 +235,11 @@ public class Controller {
 
             manoDealerLabel.setText("Mano dealer: ");
             manoDealerLabel.setTextFill(Color.WHITE);
-            disable(buttonProssimaMano, true, 0);
+            disable(buttonProssimaMano, true, 0.0);
             somma = 0;
             sommaDealer = 0;
             valorePuntata = 0;
+            finitoDiDistribuireCarteIniziali = false;
             listaCarte.clear();
             listaCarteDealer.clear();
             playerHand.getChildren().clear();
@@ -248,15 +251,16 @@ public class Controller {
             manoLabel.setTextFill(Color.WHITE);
             manoDealerLabel.setTextFill(Color.WHITE);
             raddoppio = false;
-            disable(bottoni, true, 0);
-            disable(manoLabel, true, 0);
-            disable(manoDealerLabel, true, 0);
-            disable(puntataSelect, false, 1);
+            disable(bottoni, true, 0.0);
+            disable(manoLabel, true, 0.0);
+            disable(manoDealerLabel, true, 0.0);
+            disable(puntataSelect, false, 1.0);
             
         }
     }
 
     private void animaCartaVersoPlayer(Image cartaImg) {
+        buttonStai.setDisable(true);
         buttonCarta.setDisable(true);
         ImageView cartaAnimata = new ImageView(cartaImg);
         cartaAnimata.setFitHeight(125);
@@ -290,7 +294,6 @@ public class Controller {
         ParallelTransition pt = new ParallelTransition(tt, st);
 
         pt.setOnFinished(e -> {
-
             rootPane.getChildren().remove(cartaAnimata);
 
             ImageView finalCard = new ImageView(cartaImg);
@@ -303,14 +306,20 @@ public class Controller {
             contaCarte();
 
             if (listaCarte.size() == 2 && somma == 21) {
-                int bonus = (int)(valorePuntata * 2.5);
-                soldiCorrenti += bonus;
-                soldiLabel.setText(soldiCorrenti + "€");
-
                 manoLabel.setText("La tua mano: 21 (BlackJack!)");
                 manoLabel.setTextFill(Color.LIGHTGREEN);
 
-                stai();
+                buttonCarta.setDisable(true);
+                buttonStai.setDisable(true);
+                buttonRaddoppia.setDisable(true);
+
+                PauseTransition pause = new PauseTransition(Duration.millis(600));
+                pause.setOnFinished(ev -> {
+                    giraCarta(true);
+                    controllaEsitoBlackjack();
+                });
+                pause.play();
+
                 return;
             }
 
@@ -331,15 +340,33 @@ public class Controller {
                 stai();
             }
 
-            if (somma < 21 && !raddoppio) {
+            if (somma < 21 && !raddoppio && finitoDiDistribuireCarteIniziali) {
                 buttonCarta.setDisable(false);
+            }
+
+            if(finitoDiDistribuireCarteIniziali){
+                buttonStai.setDisable(false);
             }
         });
 
         pt.play();
     }
 
+    private void controllaEsitoBlackjack() {
+        if (sommaDealer == 21) {
+            soldiCorrenti += valorePuntata;
+        } else {
+            soldiCorrenti += (int)(valorePuntata * 1.5);
+        }
+
+        soldiLabel.setText(soldiCorrenti + "€");
+        disable(buttonProssimaMano, false, 1.0);
+    }
+
     private void distribuisciCarteIniziali() {
+        buttonCarta.setDisable(true);
+        buttonRaddoppia.setDisable(true);
+        buttonStai.setDisable(true);
         soldiCorrenti -= valorePuntata;
         soldiLabel.setText(soldiCorrenti + "€");
 
@@ -361,6 +388,15 @@ public class Controller {
         PauseTransition pause3 = new PauseTransition(Duration.millis(1800));
         pause3.setOnFinished(e -> animaCartaVersoDealer(dealerSecond, true));
         pause3.play();
+
+        PauseTransition pause4 = new PauseTransition(Duration.millis(2400));
+        pause4.setOnFinished(e -> {
+            buttonCarta.setDisable(false);
+            buttonRaddoppia.setDisable(false);
+            buttonStai.setDisable(false);
+            finitoDiDistribuireCarteIniziali = true;
+        });
+        pause4.play();
     }
 
     private void animaCartaVersoDealer(Image cartaImg, boolean girata) {
@@ -409,14 +445,14 @@ public class Controller {
                 cartaGirata = finalCard;
                 cartaDealerGirata = true;
             }
+            
+            
         });
 
         pt.play();
     }
 
-    private void giraCarta() {
-        cartaDealerGirata = false;
-
+    private void giraCarta(boolean blackjack) {
         RotateTransition rotateOut = new RotateTransition(Duration.millis(250), cartaGirata);
         rotateOut.setAxis(Rotate.Y_AXIS);
         rotateOut.setFromAngle(0);
@@ -428,15 +464,18 @@ public class Controller {
         rotateIn.setToAngle(0);
 
         rotateOut.setOnFinished(e -> {
-            Image nuovaCarta = generaCarta();
-            cartaGirata.setImage(nuovaCarta);
+            cartaGirata.setImage(generaCarta());
             listaCarteDealer.add(cartaGirata);
             contaCarteDealer();
             rotateIn.play();
         });
 
         rotateIn.setOnFinished(e -> {
-            pescaDealerFinoA17();
+            if (blackjack) {
+                controllaEsitoBlackjack();
+            } else {
+                pescaDealerFinoA17();
+            }
         });
 
         rotateOut.play();
@@ -446,8 +485,10 @@ public class Controller {
         if (sommaDealer < 17) {
             animaCartaVersoDealer(generaCarta(), false);
             PauseTransition pause = new PauseTransition(Duration.millis(550));
-            pause.setOnFinished(e -> pescaDealerFinoA17());
+            pause.setOnFinished(e -> {pescaDealerFinoA17();});
             pause.play();
+        } else{
+            disable(buttonProssimaMano, false, 1.0);
         }
     }
 
@@ -505,9 +546,8 @@ public class Controller {
         buttonRaddoppia.setDisable(true);
         buttonCarta.setDisable(true);
         buttonStai.setDisable(true);
-        disable(buttonProssimaMano, false, 1);
-        giraCarta();
-        
+        disable(buttonProssimaMano, true, 0.5);
+        giraCarta(false);
     }
 
     private Image generaCarta(){
@@ -598,7 +638,7 @@ public class Controller {
         }
     }
 
-    private void disable(Node node, boolean disable, int opacity){
+    private void disable(Node node, boolean disable, Double opacity){
         node.setDisable(disable);
         node.setOpacity(opacity);
     }
