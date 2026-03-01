@@ -9,7 +9,7 @@
             "name": "Avvia app",
             "request": "launch",
             "mainClass": "Main",
-            "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-25.0.2/lib\" --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"C:/Program Files (x86)/BlackJack/javafx-sdk-25.0.2/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
