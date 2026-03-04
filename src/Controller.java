@@ -391,9 +391,13 @@ public class Controller {
 
         PauseTransition pause4 = new PauseTransition(Duration.millis(2400));
         pause4.setOnFinished(e -> {
-            buttonCarta.setDisable(false);
-            buttonRaddoppia.setDisable(false);
-            buttonStai.setDisable(false);
+            contaCarte();
+            if(somma < 21){
+                buttonCarta.setDisable(false);
+                buttonRaddoppia.setDisable(false);
+                buttonStai.setDisable(false);
+            }
+           
             finitoDiDistribuireCarteIniziali = true;
         });
         pause4.play();
@@ -621,6 +625,8 @@ public class Controller {
         }
         if(somma > 21){
             manoLabel.setText("La tua mano: " + somma + " (Hai sballato!)");
+        } else if (somma == 21){
+            manoLabel.setText("La tua mano: " + somma + " (BlackJack!)");
         } else {
             manoLabel.setText("La tua mano: " + somma);
         }
