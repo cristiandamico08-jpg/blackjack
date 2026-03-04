@@ -27,12 +27,12 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label fx:id="titoloBlack" alignment="CENTER" contentDisplay="CENTER" layoutX="328.0" layoutY="254.0" prefHeight="142.0" prefWidth="545.0" text="BLACKJACK" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="titoloBlack" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="328.0" layoutY="254.0" prefHeight="142.0" prefWidth="545.0" style="-fx-font-weight: bold;" text="BLACK" textFill="WHITE">
          <font>
             <Font size="96.0" />
          </font>
       </Label>
-      <Label fx:id="titoloJack" alignment="CENTER" contentDisplay="CENTER" layoutX="594.0" layoutY="254.0" prefHeight="142.0" prefWidth="292.0" text="JACK" textAlignment="CENTER" textFill="RED">
+      <Label fx:id="titoloJack" alignment="CENTER" contentDisplay="CENTER" layoutX="606.0" layoutY="254.0" prefHeight="142.0" prefWidth="292.0" style="-fx-font-weight: bold;" text="JACK" textAlignment="CENTER" textFill="RED">
          <font>
             <Font size="96.0" />
          </font>

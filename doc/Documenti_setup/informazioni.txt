@@ -1,0 +1,5 @@
+Questo progetto è creato con Java e JavaFX.
+
+Per il corretto funzionamento dell'applicazione si prega di scaricare la versione <25.0.2> della JDK di Java.
+
+Se non presente è possibile scaricarla al seguente link: https://download.oracle.com/java/25/latest/jdk-25_windows-x64_bin.exe

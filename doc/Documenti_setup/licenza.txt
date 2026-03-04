@@ -1,0 +1,7 @@
+Copyright (c) <2026> <Cristian Dylan D'Amico e Simone Napolitano>
+
+Con la presente si concede a qualsiasi persona che ottenga una copia di questo software e della relativa documentazione, l'autorizzazione a trattare il Software senza alcuna restrizione, inclusi, senza limitazione, i diritti di utilizzare, copiare, modificare, unire, e di consentire alle persone a cui il Software è fornito di fare altrettanto, soggette alle seguenti condizioni:
+
+L'avviso sul copyright sopra riportato e questa nota di permesso devono essere inclusi in tutte le copie o parti sostanziali del Software.
+
+IL SOFTWARE VIENE FORNITO "COSÌ COM'È", SENZA ALCUN TIPO DI GARANZIA, ESPRESSA O IMPLICITA, IVI INCLUSE, A TITOLO ESEMPLIFICATIVO E NON ESAUSTIVO, LE GARANZIE DI COMMERCIABILITÀ, IDONEITÀ PER UNO SCOPO PARTICOLARE E ASSENZA DI VIOLAZIONE. IN NESSUN CASO GLI AUTORI O I TITOLARI DEL COPYRIGHT SARANNO RESPONSABILI PER QUALSIASI RECLAMO, DANNO O ALTRA RESPONSABILITÀ, DERIVANTE DA O IN CONNESSIONE CON IL SOFTWARE O L'USO O ALTRE OPERAZIONI NEL SOFTWARE, SIA IN UN'AZIONE CONTRATTUALE, EXTRACONTRATTUALE O ALTRO.
