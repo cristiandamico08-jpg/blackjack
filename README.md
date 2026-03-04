@@ -6,7 +6,7 @@ Usare la versione **25.0.2** di Java, altrimenti non funziona
 
 ### LINK DOWNLOAD JAVA WINDOWS
 
-Windows: https://download.oracle.com/java/25/latest/jdk-25_windows-x64_bin.exe)
+Windows: https://download.oracle.com/java/25/latest/jdk-25_windows-x64_bin.exe
 
 ### LINK DOWNLOAD JAVA MACOS
 
