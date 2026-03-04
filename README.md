@@ -8,9 +8,13 @@ Usare la versione **25.0.2** di Java, altrimenti non funziona
 
 Windows: https://download.oracle.com/java/25/latest/jdk-25_windows-x64_bin.exe
 
-### LINK DOWNLOAD JAVA MACOS
+### LINK DOWNLOAD JAVA MACOS chip INTEL
 
-MacOS: https://download.oracle.com/java/25/latest/jdk-25_macos-x64_bin.dmg
+MacOS x64: https://download.oracle.com/java/25/latest/jdk-25_macos-x64_bin.dmg
+
+### LINK DOWNLOAD JAVA MACOS chip APPLE
+
+MacoOS ARM64: https://download.oracle.com/java/25/latest/jdk-25_macos-aarch64_bin.dmg
 
 ## Funzionamento app
 
