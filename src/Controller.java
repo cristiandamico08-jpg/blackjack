@@ -344,7 +344,7 @@ public class Controller {
                 buttonCarta.setDisable(false);
             }
 
-            if(finitoDiDistribuireCarteIniziali){
+            if(finitoDiDistribuireCarteIniziali && !raddoppio){
                 buttonStai.setDisable(false);
             }
         });
