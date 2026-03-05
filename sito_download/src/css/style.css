@@ -69,6 +69,17 @@ span {
     border-radius: 15px;
 }
 
+.bottoniWindows button:hover {
+    width: 100%;
+    background-color: rgb(117, 188, 117);
+    border: 3px solid #0E582A;
+    font-size: 20px;
+    height: 60px;
+    color: #0E582A;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
 .bottoniWindows button:active {
     width: 100%;
     background-color: #0E582A;
@@ -88,6 +99,17 @@ span {
 .bottoniMac button {
     width: 100%;
     background-color: lightgreen;
+    border: 3px solid #0E582A;
+    font-size: 20px;
+    height: 60px;
+    color: #0E582A;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.bottoniMac button:hover {
+    width: 100%;
+    background-color: rgb(117, 188, 117);
     border: 3px solid #0E582A;
     font-size: 20px;
     height: 60px;
@@ -133,6 +155,17 @@ span {
 #github {
     width: 100%;
     background-color: lightgreen;
+    border: 3px solid #0E582A;
+    font-size: 20px;
+    height: 60px;
+    color: #0E582A;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+#github:hover {
+    width: 100%;
+    background-color: rgb(117, 188, 117);
     border: 3px solid #0E582A;
     font-size: 20px;
     height: 60px;
