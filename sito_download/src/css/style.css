@@ -4,10 +4,11 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     font-family: Arial, Helvetica, sans-serif;
-    margin-top: 50px;
+    margin: auto 0;
 }
 
 h1 {
+    margin-top: 4px;
     color: white;
     text-align: center;
     font-size: 100px;
@@ -135,4 +136,20 @@ span {
     color: lightgreen;
     cursor: pointer;
     border-radius: 15px;
+    margin: 0;
+}
+
+#footer {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.366);
+}
+
+#footer hr {
+    border: 2px solid white;
+}
+
+#testo {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 50px;
 }
