@@ -4,10 +4,15 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     font-family: Arial, Helvetica, sans-serif;
+    margin-top: 50px;
+    margin-left: 300px;
+    margin-right: 300px;
 }
 
 h1 {
-    color: white
+    color: white;
+    text-align: center;
+    font-size: 100px;
 }
 
 span {
@@ -15,23 +20,77 @@ span {
 }
 
 .grigliaDownload {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr 1.4fr 1.4fr 1fr;
-    grid-template-rows: repeat(5, 1fr);
-    gap: 8px;
-}
+    display: flex;
+    justify-content: space-between;
+    color: white;
     
-.downloadWindows {
-    grid-row: span 3 / span 3;
-    grid-column-start: 2;
 }
 
-.downloadMacIntel {
-    grid-row: span 3 / span 3;
-    grid-column-start: 3 / span 2;
+#logoApple {
+    width: 100px;
+    height: auto;
 }
 
-.downloadMacApple {
-    grid-row: span 3 / span 3;
-    grid-column-start: 5 / span 2;
+#logoWindows {
+    width: 100px;
+    height: auto;
+}
+
+.windowsBox {
+    display: block;
+    text-align: center;
+}
+
+.appleBox {
+    display: block;
+    text-align: center;
+}
+
+.windowsBox button {
+    width: 100%;
+    background-color: lightgreen;
+    border: 3px solid #0E582A;
+    font-size: 20px;
+    height: 60px;
+    color: #0E582A;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.windowsBox button:active {
+    width: 100%;
+    background-color: #0E582A;
+    border: 3px solid lightgreen;
+    font-size: 20px;
+    height: 60px;
+    color: lightgreen;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.bottoniMac {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottoniMac button {
+    width: 100%;
+    background-color: lightgreen;
+    border: 3px solid #0E582A;
+    font-size: 20px;
+    height: 60px;
+    color: #0E582A;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.bottoniMac button:active {
+    width: 100%;
+    background-color: #0E582A;
+    border: 3px solid lightgreen;
+    font-size: 20px;
+    height: 60px;
+    color: lightgreen;
+    cursor: pointer;
+    border-radius: 15px;
 }

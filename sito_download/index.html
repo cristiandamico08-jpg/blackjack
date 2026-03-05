@@ -6,18 +6,20 @@
 <body>
     <h1>BLACK<span>JACK</span></h1>
     <div class="grigliaDownload">
-        <div class="downloadWindows">
-            <h2>Download per Windows:</h2>
-            <button>Download</button>
+        <div class="windowsBox">
+            <h2>Download per Windows</h2>
+            <center><img src="assets/img/windowsLogo.png" id="logoWindows"></center> <br/><br/>
+            <center><button onclick="download()" id="downloadWindows">Download</button></center>
         </div>
-        <div class="downloadMacIntel">
-            <h2>Download per Mac(chip Intel):</h2>
-            <button>Download</button>
-        </div>
-        <div class="downloadMacApple">
-            <h2>Download per Mac(chip Apple):</h2>
-            <button>Download</button>
+        <div class="appleBox">
+            <h2>Download per Mac</h2>
+            <center><img src="assets/img/appleLogo.png" id="logoApple"></center> <br/><br/>
+            <div class="bottoniMac">
+                <button id="download64">Download (ARM64)</button>
+                <button id="downloadARM64">Download (x64)</button>
+            </div>
         </div>
     </div>
+    <script src = "src/js/script.js"></script>
 </body>
 </html>
