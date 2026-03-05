@@ -5,8 +5,6 @@ body {
     background-position: center;
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 50px;
-    margin-left: 300px;
-    margin-right: 300px;
 }
 
 h1 {
@@ -23,17 +21,16 @@ span {
     display: flex;
     justify-content: space-between;
     color: white;
-    
+    margin-left: 300px;
+    margin-right: 300px;
 }
 
 #logoApple {
     width: 100px;
-    height: auto;
 }
 
 #logoWindows {
-    width: 100px;
-    height: auto;
+    width: 112px;
 }
 
 .windowsBox {
@@ -46,7 +43,7 @@ span {
     text-align: center;
 }
 
-.windowsBox button {
+.bottoniWindows button {
     width: 100%;
     background-color: lightgreen;
     border: 3px solid #0E582A;
@@ -57,7 +54,7 @@ span {
     border-radius: 15px;
 }
 
-.windowsBox button:active {
+.bottoniWindows button:active {
     width: 100%;
     background-color: #0E582A;
     border: 3px solid lightgreen;
@@ -85,6 +82,51 @@ span {
 }
 
 .bottoniMac button:active {
+    width: 100%;
+    background-color: #0E582A;
+    border: 3px solid lightgreen;
+    font-size: 20px;
+    height: 60px;
+    color: lightgreen;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+#download64 {
+    margin-left: 5px;
+}
+
+#downloadJava64 {
+    margin-left: 5px;
+}
+
+#downloadARM64 {
+    margin-right: 5px;
+}
+
+#downloadJavaARM64 {
+    margin-right: 5px;
+}
+
+#git {
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#github {
+    width: 100%;
+    background-color: lightgreen;
+    border: 3px solid #0E582A;
+    font-size: 20px;
+    height: 60px;
+    color: #0E582A;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+#github:active {
     width: 100%;
     background-color: #0E582A;
     border: 3px solid lightgreen;

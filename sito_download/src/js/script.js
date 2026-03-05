@@ -1,23 +1,46 @@
-function download(downloadCode){
-    switch(downloadCode){
-        case 1:
-            const link1 = document.createElement('a');
-            link1.href = 'https://github.com/cristiandamico08-jpg/blackjack/releases/download/nuovo_setup/setupBlackJack.exe';
-            link1.download = 'setupBlackJack.exe';
-            link1.click();
-            break;
-        case 2:
-            const link2 = document.createElement('a');
-            link2.href = 'https://github.com/cristiandamico08-jpg/blackjack/releases/download/nuovo_setup/setupBlackJack_ARM64.dmg';
-            link2.download = 'setupBlackJack_ARM64.dmg';
-            link2.click();
-            break;
-        case 3:
-            const link3 = document.createElement('a');
-            link3.href = 'https://github.com/cristiandamico08-jpg/blackjack/releases/download/nuovo_setup/setupBlackJack_x64.dmg';
-            link3.download = 'setupBlackJack_x64.dmg';
-            link3.click();
-            break;
-    }
-    
-}
+
+document.getElementById('downloadWindows').addEventListener('click', ()=>{
+    const link = document.createElement('a');
+    link.href = 'https://github.com/cristiandamico08-jpg/blackjack/releases/download/nuovo_setup/setupBlackJack.exe';
+    link.download = 'setupBlackJack.exe';
+    link.click();
+});
+
+document.getElementById('download64').addEventListener('click', ()=>{
+    const link = document.createElement('a');
+    link.href = 'https://github.com/cristiandamico08-jpg/blackjack/releases/download/nuovo_setup/setupBlackJack_x64.dmg';
+    link.download = 'setupBlackJack_ARM64.dmg';
+    link.click();
+});
+
+document.getElementById('downloadARM64').addEventListener('click', ()=>{
+    const link = document.createElement('a');
+    link.href = 'https://github.com/cristiandamico08-jpg/blackjack/releases/download/nuovo_setup/setupBlackJack_ARM64.dmg';
+    link.download = 'setupBlackJack_x64.dmg';
+    link.click();
+});
+
+document.getElementById('downloadJavaWindows').addEventListener('click', ()=>{
+    const link = document.createElement('a');
+    link.href = 'https://download.oracle.com/java/25/latest/jdk-25_windows-x64_bin.exe';
+    link.download = 'jdk-25_windows-x64_bin.exe';
+    link.click();
+});
+
+document.getElementById('downloadJava64').addEventListener('click', ()=>{
+    const link = document.createElement('a');
+    link.href = 'https://download.oracle.com/java/25/latest/jdk-25_macos-x64_bin.dmg';
+    link.download = 'jdk-25_macos-x64_bin.dmg';
+    link.click();
+});
+
+document.getElementById('downloadJavaARM64').addEventListener('click', ()=>{
+    const link = document.createElement('a');
+    link.href = 'https://download.oracle.com/java/25/latest/jdk-25_macos-aarch64_bin.dmg';
+    link.download = 'jdk-25_macos-aarch64_bin.dmg';
+    link.click();
+});
+
+document.getElementById('github').addEventListener('click', ()=>{
+    window.open('https://github.com/cristiandamico08-jpg/blackjack', '_blank');
+});
