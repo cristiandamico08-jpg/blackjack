@@ -142,7 +142,6 @@ span {
 #footer {
     color: white;
     background-color: rgba(0, 0, 0, 0.366);
-    height: 100%;
 }
 
 #footer hr {
@@ -152,4 +151,5 @@ span {
 #testo {
     padding-top: 10px;
     padding-left: 50px;
+    padding-bottom: 20px;
 }
