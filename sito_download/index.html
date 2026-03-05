@@ -9,14 +9,21 @@
         <div class="windowsBox">
             <h2>Download per Windows</h2>
             <center><img src="assets/img/windowsLogo.png" id="logoWindows"></center> <br/><br/>
-            <center><button onclick="download()" id="downloadWindows">Download</button></center>
+            <center><button onclick="download(1)" id="downloadWindows">Download</button></center>
+            <p>In caso non si abbia Java 25.0.2 lo puoi scaricare qui!</p>
+            <center><button onclick="download()" id="downloadJavaWindows">Download</button></center>
         </div>
         <div class="appleBox">
             <h2>Download per Mac</h2>
             <center><img src="assets/img/appleLogo.png" id="logoApple"></center> <br/><br/>
             <div class="bottoniMac">
-                <button id="download64">Download (ARM64)</button>
-                <button id="downloadARM64">Download (x64)</button>
+                <button onclick="download(2)"  id="download64">Download (ARM64)</button>
+                <button onclick="download(3)"  id="downloadARM64">Download (x64)</button>
+            </div>
+            <p>In caso non si abbia Java 25.0.2 lo puoi scaricare qui!</p>
+            <div class="bottoniMac">
+                <button onclick="download(2)"  id="downloadJava64">Download (ARM64)</button>
+                <button onclick="download(3)"  id="downloadJavaARM64">Download (x64)</button>
             </div>
         </div>
     </div>
