@@ -13,3 +13,25 @@ h1 {
 span {
     color: red;
 }
+
+.grigliaDownload {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1.4fr 1.4fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+}
+    
+.downloadWindows {
+    grid-row: span 3 / span 3;
+    grid-column-start: 2;
+}
+
+.downloadMacIntel {
+    grid-row: span 3 / span 3;
+    grid-column-start: 3 / span 2;
+}
+
+.downloadMacApple {
+    grid-row: span 3 / span 3;
+    grid-column-start: 5 / span 2;
+}
