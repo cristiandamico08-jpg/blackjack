@@ -2,8 +2,18 @@
 
 # :video_game: COME SCARICARE IL GIOCO :video_game:
 ### :diamond_shape_with_a_dot_inside: Windows :diamond_shape_with_a_dot_inside:
-Puoi scaricare il nostro gioco dal nostro sito o dalla repository
+Puoi scaricare il nostro gioco dal [nostro sito](https://simonenapolitano.github.io/blackjack-downloads/)
 
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/download_sito_windows.gif)
+
+Oppure direttamente dalla nostra repository
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/download_git_windows.gif)
+
+Dopo aver scaricato il setup ed averlo aperto ti comparirà un messaggio d'avviso, non preoccuparti, compare perchè windows non riesce a trovare l'autore dell'applicazione, che siamo noi :wink:.
+Se non sai come fare ti lasciamo un piccolo video qui:
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/esegui_windows.gif)
 
 # :coffee: LINK DOWNLOAD JAVA :coffee:
 
