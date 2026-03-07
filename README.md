@@ -15,6 +15,14 @@ Se non sai come fare ti lasciamo un piccolo video qui:
 
 ![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/esegui_windows.gif)
 
+Dopo aver dato i permessi da amministratore si aprirà il setup per scaricare il gioco
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/config_setup.gif)
+
+Infine goditi il nostro gioco! :heart:
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/gioco_windows.png)
+
 # :coffee: LINK DOWNLOAD JAVA :coffee:
 
 ### LINK DOWNLOAD JAVA WINDOWS
