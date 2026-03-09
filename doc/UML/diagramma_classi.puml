@@ -1,4 +1,4 @@
-@startuml
+@startuml diagramma_classi.puml
 
 class Controller{
     -stage : Stage

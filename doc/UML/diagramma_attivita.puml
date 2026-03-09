@@ -1,0 +1,156 @@
+@startuml diagramma_attività.puml
+    start
+
+        :L'utente preme il pulsante "Gioca";
+        :L'app passa alla Scena 2 (Scene2.fxml);
+
+        switch (L'utente sceglia la puntata\npremendo il pulsante apposito)
+            case ( 100€)
+
+                if (Se l'utente ha abbastanza soldi) then (Li ha)
+
+                    :Vengono rimossi 100€ dal saldo totale;
+                    :Vengono date le carte iniziali\nsia al giocatore che al dealer;
+                    switch (Il giocatore preme uno dei pulsanti)
+                        case ( Raddoppia)
+
+                            if (Viene data una singola\ncarta al giocatore) then (Il giocatore non supera il 21)
+                                :Vengono rimossi altri 100€ dal saldo totale\ne si inizia a dare le carte al dealer;
+                                if (Vengono date le carte al dealer\nfino a quando raggiunge o supera il 17) then (Il dealer vince)
+                                    :Non vengono rimossi altri soldi\ned inizierà una nuova partita;
+                                else (Il dealer perde)
+                                    :Vengono ridati i soldi puntati (200€)\ne vengono aggiunti i soldi della vincita (200€);
+                                endif
+                            else (Il giocatore supera il 21)
+                                :Vengono rimossi altri 100€ dal saldo totale;
+                                :Vengono date le carte al dealer,\nma indipendentemente dal risultato del dealer\nil giocatore ha perso, quindi inizierà una nuova partita;
+                            endif
+
+                        case ( Stai)
+
+                            if (Non vengono date carte al giocatore\ne si inizia a dare le carte al dealer) then (Il dealer vince)
+                                :Non vengono rimossi altri\nsoldi ed inizierà una nuova partita;
+                            else (Il dealer perde)
+                                :Vengono ridati i soldi puntati (100€) e\nvengono aggiunti i soldi della vincita (100€);
+                            endif
+
+                        case ( Carta)
+
+                            while (Viene data la carta al giocatore) is (Il giocatore non supera il 21)
+                                :Il giocatore ha la possibilità di richiedere di nuovo\ncarta o premere il pulsante "Stai";
+                            endwhile (Il giocatore\nsupera il 21\no preme il\npulsante "Stai")
+
+                    endswitch
+
+                else (Non li ha)
+
+                    :Compare un alert che chiede\nse si vuole cominciare una nuova partita;
+
+                endif
+
+            case ( 250€)
+
+                if (Se l'utente ha abbastanza soldi) then (Li ha)
+
+                    :Vengono rimossi 250€ dal saldo totale;
+                    :Vengono date le carte iniziali\nsia al giocatore che al dealer;
+                    switch (Il giocatore preme uno dei pulsanti)
+                        case ( Raddoppia)
+
+                            if (Viene data una singola\ncarta al giocatore) then (Il giocatore non supera il 21)
+                                :Vengono rimossi altri 250€ dal saldo\ntotale e si inizia a dare le carte al dealer;
+                                if (Vengono date le carte al dealer\nfino a quando raggiunge o supera il 17) then (Il dealer vince)
+                                    :Non vengono rimossi altri soldi\ned inizierà una nuova partita;
+                                else (Il dealer perde)
+                                    :Vengono ridati i soldi puntati (500€)\ne vengono aggiunti i soldi della vincita (500€);
+                                endif
+                            else (Il giocatore supera il 21)
+                                :Vengono rimossi altri 250€ dal saldo totale;
+                                :Vengono date le carte al dealer\nma indipendentemente dal risultato del dealer,\nil giocatore ha perso quindi inizierà una nuova partita;
+                            endif
+
+                        case ( Stai)
+
+                            if (Non vengono date carte al giocatore\ne si inizia a dare le carte al dealer) then (Il dealer vince)
+                                :Non vengono rimossi altri soldi\ned inizierà una nuova partita;
+                            else (Il dealer perde)
+                                :Vengono ridati i soldi puntati (250€)\ne vengono aggiunti i soldi della vincita (250€);
+                            endif
+
+                        case ( Carta)
+
+                            while (Viene data la carta al giocatore) is (Il giocatore non supera il 21)
+                                :Il giocatore ha la possibilità\ndi richiedere di nuovo carta o\npremere il pulsante "Stai";
+                            endwhile (Il giocatore\nsupera il 21\no preme il\npulsante "Stai")
+
+                    endswitch
+
+                else (Non li ha)
+
+                    if (Il programma controlla\nil saldo totale) then (saldoTotale >= 100)
+                        :Si disattivano i\npulsanti "250€" e "500€";
+                        :L'utente è costratto\na puntare solo 100€;
+                    else (saldoTotale < 100)
+                        :Compare un alert che chiede\nse si vuole cominciare una nuova partita;
+                    endif
+
+                endif
+
+            case ( 500€)
+
+                if (Se l'utente ha abbastanza soldi) then (Li ha)
+
+                    :Vengono rimossi\n500€ dal saldo totale;
+                    :Vengono date le carte iniziali\nsia al giocatore che al dealer;
+                    switch (Il giocatore preme uno dei pulsanti)
+                        case ( Raddoppia)
+
+                            if (Viene data una singola\ncarta al giocatore) then (Il giocatore non supera il 21)
+                                :Vengono rimossi altri 500€\ndal saldo totale e si\ninizia a dare le carte al dealer;
+                                if (Vengono date le carte al dealer\nfino a quando raggiunge\no supera il 17) then (Il dealer vince)
+                                    :Non vengono rimossi altri soldi\ned inizierà una nuova partita;
+                                else (Il dealer perde)
+                                    :Vengono ridati i soldi puntati (1000€)\ne vengono aggiunti i soldi della vincita (1000€);
+                                endif
+                            else (Il giocatore supera il 21)
+                                :Vengono rimossi altri\n500€ dal saldo totale;
+                                :Vengono date le carte al dealer\nma indipendentemente dal risultato del dealer,\nil giocatore ha perso quindi inizierà una nuova partita;
+                            endif
+
+                        case ( Stai)
+
+                            if (Non vengono date carte al giocatore\ne si inizia a dare le carte al dealer) then (Il dealer vince)
+                                :Non vengono rimossi altri soldi\ned inizierà una nuova partita;
+                            else (Il dealer perde)
+                                :Vengono ridati i soldi puntati (500€)\ne vengono aggiunti i soldi\ndella vincita (250€);
+                            endif
+
+                        case ( Carta)
+
+                            while (Viene data la carta al giocatore) is (Il giocatore non supera il 21)
+                                :Il giocatore ha la possibilità di richiedere\ndi nuovo carta o premere il pulsante "Stai";
+                            endwhile (Il giocatore\nsupera il 21\no preme il\npulsante "Stai")
+
+                    endswitch
+
+                else (Non li ha)
+
+                    if (Il programma controlla il saldo totale) then (saldoTotale >= 250)
+                        :Si disattiva il pulsante "500€";
+                        :L'utente è costratto\na puntare 100€ o 250€;
+                    else (saldoTotale < 250)
+                        :L'utente è costretto\na puntare 100€;
+                    endif
+
+                endif
+
+        endswitch
+
+        if (Finito il saldo compare un alert\nche chiede se si vuole\nfare una nuova partita) then (Se si preme "Ok")
+            :L'app si resetta\ncominciando una nuova partita;
+        else (Se si preme preme "Annulla")
+            :L'app passa alla pagina\niniziale (Scene1.fxml);
+        endif
+
+    stop
+@enduml

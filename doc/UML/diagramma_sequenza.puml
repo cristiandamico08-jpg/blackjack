@@ -1,25 +1,139 @@
-@startuml
+@startuml diagramma_sequenza.puml
 actor "Utente" as utente
 participant "Interfaccia(JavaFX)" as interfaccia
 participant "Logica(Controller.java)" as logica
 
 utente -> interfaccia : Clicca "Gioca"
-activate interfaccia
-interfaccia -> logica : Utente punta
-activate logica
-logica -> logica : Assegna il valore della puntata
 alt Valore puntata = 100
+    activate interfaccia
+    interfaccia -> logica : punta100();
+    activate logica
     logica -> logica : valorePuntata = 100
-    logica -> interfaccia : Disattiva i bottoni di puntata
-    logica -> interfaccia : Attiva bottoni di carta, raddoppia e stai 
+    logica -> interfaccia : distribuisciCarteIniziali();
+    alt Utente fa blackjack con le prime carte
+        note right of interfaccia: "true" perchè l'utente ha fatto blackjack 
+        logica -> interfaccia : giraCarta(true);
+        logica -> interfaccia : controllaEsitoBlackjack();
+        activate utente
+        alt Dealer gira la carta girata e fa pareggio
+            interfaccia -> utente : Restituisce il valore dela puntata all'utente
+        else Dealer gira la carta girata e non fa pareggio
+            interfaccia -> utente : Aggiorna il saldo dell'utente\naggiungendogli il 150% del valore della puntata
+        end
+        utente -> interfaccia : Clicca "Prossima Mano"
+        interfaccia -> logica : prossimaMano();
+        alt Utente ha finito i soldi per un'altra partita
+            logica -> interfaccia : Mostra un alert che chiede se vuole fare\nuna nuova partita
+        else Utente ha i soldi per un'altra partita
+            logica -> interfaccia : Carica la prossima mano
+        end
+    else Utente non fa blackjack con le prime carte
+        interfaccia -> utente : Decide se prendere carta, \nraddoppiare o stare
+        loop Utente prende carta fino a quando vuole
+            utente -> utente : pescaCarta();
+        end
+        utente -> interfaccia : Clicca "Stai
+        interfaccia -> logica : stai();
+        note right of interfaccia: false perchè non ha fatto blackjack
+        logica -> interfaccia : giraCarta(false); 
+        loop Dealer pesca fino a 17
+            logica -> interfaccia : pescaCartaDealer();
+        end
+        alt Pareggio con Dealer
+            interfaccia -> utente : Restituisce il valore della puntata all'utente
+        else Utente ha un punteggio superiore al Dealer
+            interfaccia -> utente : Aggiorna il saldo dell'utente\naggiungendogli il doppio del valore della puntata
+        end
+        deactivate utente
+        deactivate logica
+    end
 else Valore puntata = 250
+    activate interfaccia
+    interfaccia -> logica : punta250();
+    activate logica
     logica -> logica : valorePuntata = 250
-    logica -> interfaccia : Disattiva i bottoni di puntata
-    logica -> interfaccia : Attiva bottoni di carta, raddoppia e stai
+    logica -> interfaccia : distribuisciCarteIniziali();
+    alt Utente fa blackjack con le prime carte
+        note right of interfaccia: "true" perchè l'utente ha fatto blackjack 
+        logica -> interfaccia : giraCarta(true);
+        logica -> interfaccia : controllaEsitoBlackjack();
+        activate utente
+        alt Dealer gira la carta girata e fa pareggio
+            interfaccia -> utente : Restituisce il valore dela puntata all'utente
+        else Dealer gira la carta girata e non fa pareggio
+            interfaccia -> utente : Aggiorna il saldo dell'utente\naggiungendogli il 150% del valore della puntata
+        end
+        utente -> interfaccia : Clicca "Prossima Mano"
+        interfaccia -> logica : prossimaMano();
+        alt Utente ha finito i soldi per un'altra partita
+            logica -> interfaccia : Mostra un alert che chiede se vuole fare\nuna nuova partita
+        else Utente ha i soldi per un'altra partita
+            logica -> interfaccia : Carica la prossima mano
+        end
+    else Utente non fa blackjack con le prime carte
+        interfaccia -> utente : Decide se prendere carta, \nraddoppiare o stare
+        loop Utente prende carta fino a quando vuole
+            utente -> utente : pescaCarta();
+        end
+        utente -> interfaccia : Clicca "Stai
+        interfaccia -> logica : stai();
+        note right of interfaccia: false perchè non ha fatto blackjack
+        logica -> interfaccia : giraCarta(false); 
+        loop Dealer pesca fino a 17
+            logica -> interfaccia : pescaCartaDealer();
+        end
+        alt Pareggio con Dealer
+            interfaccia -> utente : Restituisce il valore della puntata all'utente
+        else Utente ha un punteggio superiore al Dealer
+            interfaccia -> utente : Aggiorna il saldo dell'utente\naggiungendogli il doppio del valore della puntata
+        end
+        deactivate utente
+        deactivate logica
+    end
 else Valore puntata = 500
+    activate interfaccia
+    interfaccia -> logica : punta500();
+    activate logica
     logica -> logica : valorePuntata = 500
-    logica -> interfaccia : Disattiva i bottoni di puntata
-    logica -> interfaccia : Attiva bottoni di carta, raddoppia e stai
+    logica -> interfaccia : distribuisciCarteIniziali();
+    alt Utente fa blackjack con le prime carte
+        note right of interfaccia: "true" perchè l'utente ha fatto blackjack 
+        logica -> interfaccia : giraCarta(true);
+        logica -> interfaccia : controllaEsitoBlackjack();
+        activate utente
+        alt Dealer gira la carta girata e fa pareggio
+            interfaccia -> utente : Restituisce il valore dela puntata all'utente
+        else Dealer gira la carta girata e non fa pareggio
+            interfaccia -> utente : Aggiorna il saldo dell'utente\naggiungendogli il 150% del valore della puntata
+        end
+        utente -> interfaccia : Clicca "Prossima Mano"
+        interfaccia -> logica : prossimaMano();
+        alt Utente ha finito i soldi per un'altra partita
+            logica -> interfaccia : Mostra un alert che chiede se vuole fare\nuna nuova partita
+        else Utente ha i soldi per un'altra partita
+            logica -> interfaccia : Carica la prossima mano
+        end
+    else Utente non fa blackjack con le prime carte
+        interfaccia -> utente : Decide se prendere carta, \nraddoppiare o stare
+        loop Utente prende carta fino a quando vuole
+            utente -> utente : pescaCarta();
+        end
+        utente -> interfaccia : Clicca "Stai
+        interfaccia -> logica : stai();
+        note right of interfaccia: false perchè non ha fatto blackjack
+        logica -> interfaccia : giraCarta(false); 
+        loop Dealer pesca fino a 17
+            logica -> interfaccia : pescaCartaDealer();
+        end
+        alt Pareggio con Dealer
+            interfaccia -> utente : Restituisce il valore della puntata all'utente
+        else Utente ha un punteggio superiore al Dealer
+            interfaccia -> utente : Aggiorna il saldo dell'utente\naggiungendogli il doppio del valore della puntata
+        end
+        deactivate utente
+        deactivate interfaccia
+        deactivate logica
+    end
 end
 
 
