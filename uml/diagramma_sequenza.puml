@@ -1,0 +1,27 @@
+@startuml
+actor "Utente" as utente
+participant "Interfaccia(JavaFX)" as interfaccia
+participant "Logica(Controller.java)" as logica
+
+utente -> interfaccia : Clicca "Gioca"
+activate interfaccia
+interfaccia -> logica : Utente punta
+activate logica
+logica -> logica : Assegna il valore della puntata
+alt Valore puntata = 100
+    logica -> logica : valorePuntata = 100
+    logica -> interfaccia : Disattiva i bottoni di puntata
+    logica -> interfaccia : Attiva bottoni di carta, raddoppia e stai 
+else Valore puntata = 250
+    logica -> logica : valorePuntata = 250
+    logica -> interfaccia : Disattiva i bottoni di puntata
+    logica -> interfaccia : Attiva bottoni di carta, raddoppia e stai
+else Valore puntata = 500
+    logica -> logica : valorePuntata = 500
+    logica -> interfaccia : Disattiva i bottoni di puntata
+    logica -> interfaccia : Attiva bottoni di carta, raddoppia e stai
+end
+
+
+
+@enduml

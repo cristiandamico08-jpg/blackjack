@@ -1,0 +1,77 @@
+@startuml
+
+class Controller{
+    -stage : Stage
+    -scene : Scene
+    +myImageView : ImageView
+    +playerHand : HBox
+    -valorePuntata : Integer
+    -contatoreCarte : Integer
+    +dealerHand : HBox
+    +manoDealerLabel : Label
+    +cartaGirata : ImageView
+    +puntataSelect : Pane
+    +bottoni : Pane
+    +buttonCarta : Button
+    +buttonRaddoppia : Button
+    +buttonStai : Button
+    +buttonProssimaMano : Button
+    +button100 : Button
+    +button250 : Button
+    +button500 : Button
+    +soldiLabel : Label
+    +manoLabel : Label
+    -listaCarteDealer : ArrayList<ImageView>
+    -listaCarte : ArrayList<ImageView>
+    -soldiCorrenti : Integer
+    +cartaMazzo1 : ImageView
+    -raddoppio : boolean
+    -cartaDealerGirata : boolean
+    -finitoDiDistribuireCarteIniziali : boolean
+    -somma : int
+    -sommaDealer : int
+    --
+    +vaiAScena1(ActionEvent event) throws IOException : void
+    +vaiAScena2(ActionEvent event) throws IOException : void
+    +tornaAlMenu(ActionEvent event) throws IOException : void
+    +nuovaPartita(ActionEvent event) throws IOException : void
+    +punta100() : void
+    +punta250() : void
+    +punta500() : void
+    +prossimaMano(ActionEvent event) throws IOException : void
+    -animaCartaVersoPlayer(Image cartaImg) : void
+    -animaCartaVersoDealer(Image cartaImg, boolean girata) : void
+    -controllaEsitoBlackjack() : void
+    -distribuisciCarteIniziali() : void
+    -giraCarta(boolean blackjack) : void
+    -pescaDealerFinoA17() : void
+    +pescaCartaDealer() : void
+    +pescaCarta() : void
+    +pescaCartaRaddoppia() : void
+    +stai() : void
+    -generaCarta() : Image
+    -contacarteDealer() : void
+    -contaCarte() : void
+    +esci() : void
+    -disable(Node node, boolean disable, Double opacity) : void
+
+}
+
+class Main{
+    +start(Stage stage) : void
+    +esci(Stage stage) : void
+    +{static}main(String[] args) : void
+}
+
+Controller ..>  Main : Controlla la classe
+note right of Controller::cartaGirata 
+    cartaGirata = new ImageView(new Image("file:assets/img/carte/dorso/back.png"));
+end note
+
+note right of Controller::contatoreCarte
+    contatoreCarte = 2;
+end note
+
+
+
+@enduml
