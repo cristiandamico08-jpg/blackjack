@@ -63,7 +63,7 @@ Infine ti si aprirà il gioco, buon divertimento! :heart:
 
 :apple: MacOS ARM64: https://download.oracle.com/java/25/latest/jdk-25_macos-aarch64_bin.dmg
 
-# :computer: Funzionamento app :computer:
+# :computer: FUNZIONAMENTO APP :computer:
 
 L'app ha un GUI molto semplice e intuitiva se si conosce il gioco del BlackJack.
 La GUI presenta pulsanti con scritto all'interno la funziona che si andrà a svolgere.
