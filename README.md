@@ -23,6 +23,15 @@ Infine goditi il nostro gioco! :heart:
 
 ![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/gioco_windows.png)
 
+### :apple: MacOS :apple:
+Puoi scaricare il nostro gioco dal [nostro sito](https://simonenapolitano.github.io/blackjack-downloads/)
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/download_sito_mac.gif)
+
+Oppure direttamente dalla nostra repository
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/download_git_mac.gif)
+
 # :coffee: LINK DOWNLOAD JAVA :coffee:
 
 ### LINK DOWNLOAD JAVA WINDOWS
