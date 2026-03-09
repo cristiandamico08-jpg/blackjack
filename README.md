@@ -1,7 +1,7 @@
 ### Applicazione creata con Java e JavaFX
 
 # :video_game: COME SCARICARE IL GIOCO :video_game:
-### :diamond_shape_with_a_dot_inside: Windows :diamond_shape_with_a_dot_inside:
+## :diamond_shape_with_a_dot_inside: Windows :diamond_shape_with_a_dot_inside:
 Puoi scaricare il nostro gioco dal [nostro sito](https://simonenapolitano.github.io/blackjack-downloads/)
 
 ![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/download_sito_windows.gif)
@@ -23,7 +23,8 @@ Infine goditi il nostro gioco! :heart:
 
 ![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/gioco_windows.png)
 
-### :apple: MacOS :apple:
+## :apple: MacOS :apple:
+#### I seguenti passaggi sono stati registrati su un computer Mac con chip Intel. I passaggi da eseguire sono gli stessi per i computer Mac con chip Apple, basta scaricare la versione ARM64
 Puoi scaricare il nostro gioco dal [nostro sito](https://simonenapolitano.github.io/blackjack-downloads/)
 
 ![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/download_sito_mac.gif)
@@ -31,6 +32,22 @@ Puoi scaricare il nostro gioco dal [nostro sito](https://simonenapolitano.github
 Oppure direttamente dalla nostra repository
 
 ![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/download_git_mac.gif)
+
+Dopo aver scaricato il file, aprilo, comparirà sul deaktop una nuova icona, aprila e sposta l'app nelle tue applicazioni
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/download_app_mac.gif)
+
+Quando proverai ad aprire per la prima volta l'app ti dirà che non la puoi aprire, ti chiederà se vuoi spostarla nel cestino o annulare, tu schiaccia annulla
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/esegui_mac.gif)
+
+Dopo di ciò apri le impostazioni, vai nella sezione "Privacy e sicurezza", scorri fino a quando non troverai un messaggio di avviso con un pulsante con scritto "Apri comunque", schiaccialo
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/impostazioni_mac.gif)
+
+Infine ti si aprirà il gioco, buon divertimento! :heart:
+
+![](https://github.com/cristiandamico08-jpg/blackjack/blob/main/assets/img/github/mac/gioco_mac.PNG)
 
 # :coffee: LINK DOWNLOAD JAVA :coffee:
 
@@ -44,9 +61,9 @@ Oppure direttamente dalla nostra repository
 
 ### LINK DOWNLOAD JAVA MACOS chip APPLE
 
-:apple: MacoOS ARM64: https://download.oracle.com/java/25/latest/jdk-25_macos-aarch64_bin.dmg
+:apple: MacOS ARM64: https://download.oracle.com/java/25/latest/jdk-25_macos-aarch64_bin.dmg
 
-# Funzionamento app
+# :computer: Funzionamento app :computer:
 
 L'app ha un GUI molto semplice e intuitiva se si conosce il gioco del BlackJack.
 La GUI presenta pulsanti con scritto all'interno la funziona che si andrà a svolgere.
