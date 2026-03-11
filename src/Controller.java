@@ -55,6 +55,7 @@ public class Controller {
     boolean raddoppio;
     boolean cartaDealerGirata;
     boolean finitoDiDistribuireCarteIniziali = false;
+    boolean blackjack = false;
     int somma = 0;
     int sommaDealer = 0;
 
@@ -182,13 +183,13 @@ public class Controller {
     public void prossimaMano(ActionEvent event) throws IOException{
         int puntataReale = raddoppio ? valorePuntata * 2 : valorePuntata;
 
-        if (somma > sommaDealer && somma <= 21) {
+        if (somma > sommaDealer && somma <= 21 && !blackjack) {
             soldiCorrenti += puntataReale * 2;
         } 
-        else if (sommaDealer > 21 && somma <= 21) {
+        else if (sommaDealer > 21 && somma <= 21 && !blackjack) {
             soldiCorrenti += puntataReale * 2;
         } 
-        else if (somma == sommaDealer && somma <= 21) {
+        else if (somma == sommaDealer && somma <= 21 && !blackjack) {
             soldiCorrenti += puntataReale;
         }
         
@@ -316,7 +317,6 @@ public class Controller {
                 PauseTransition pause = new PauseTransition(Duration.millis(600));
                 pause.setOnFinished(ev -> {
                     giraCarta(true);
-                    controllaEsitoBlackjack();
                 });
                 pause.play();
 
@@ -353,7 +353,7 @@ public class Controller {
     }
 
     private void controllaEsitoBlackjack() {
-        if (sommaDealer == 21) {
+        if (sommaDealer == 21 && !blackjack) {
             soldiCorrenti += valorePuntata;
         } else {
             soldiCorrenti += (int)(valorePuntata * 1.5);
@@ -397,7 +397,7 @@ public class Controller {
                 buttonRaddoppia.setDisable(false);
                 buttonStai.setDisable(false);
             }
-           
+            
             finitoDiDistribuireCarteIniziali = true;
         });
         pause4.play();
@@ -461,6 +461,7 @@ public class Controller {
         rotateOut.setAxis(Rotate.Y_AXIS);
         rotateOut.setFromAngle(0);
         rotateOut.setToAngle(90);
+        this.blackjack = blackjack;
 
         RotateTransition rotateIn = new RotateTransition(Duration.millis(250), cartaGirata);
         rotateIn.setAxis(Rotate.Y_AXIS);
