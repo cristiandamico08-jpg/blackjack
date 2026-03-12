@@ -1,0 +1,22 @@
+@startuml diagramma_caso_d'uso.puml
+
+top to bottom direction
+
+actor "Utente\n(Giocatore)" as utente
+
+rectangle "Sistema Funzionamento Gioco"{
+    usecase "Sceglie la puntata\n(100€, 250€, 500€)" as puntata
+    usecase "Sceglie che azione fare" as azione
+    usecase "Sceglie se rigiocare\no uscire" as finale
+    usecase "Menù gioco" as menu
+}
+
+utente --> menu
+
+menu ..> puntata : "Se l'utente preme\nil tasto 'GIOCA'"
+puntata ..> azione : "Vengo distribuite\nle carte"
+azione ..> finale : "Una volta\nfiniti i soldi"
+finale ..> puntata : "Se sceglie\ndi rigiocare"
+finale ..>menu : "Se sceglie\ndi uscire"
+
+@enduml

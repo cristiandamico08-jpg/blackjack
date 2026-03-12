@@ -1,0 +1,15 @@
+@startuml diagramma_stato.puml
+
+[*] -> Puntata : Inizializza tutte le variabile\n(no saldoTotale) a 0
+Puntata -> Gioco : Modifica le variabili\nin base alla necessità
+Gioco -> Puntata : Riporta tutte le variabili\n(no saldoTotale) a 0
+
+Puntata: Valore carte dealer: sommaDealer = 0
+Puntata: Valore carte giocatore: somma = 0
+Puntata: Scelta per la puntata: valorePuntata = 0
+
+Gioco: Valore carte dealer: sommaDealer += numeroCarta
+Gioco: Valore carte giocatore: somma += numeroCarta
+Gioco: Puntata: valorePuntata = 100 (o cambia in base al bottone schiacciato)
+
+@enduml
