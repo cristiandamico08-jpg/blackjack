@@ -357,8 +357,10 @@ public class Controller {
         if (sommaDealer == 21 && !blackjack) {
             soldiCorrenti += valorePuntata;
         } else {
-            soldiCorrenti += valorePuntata;
             soldiCorrenti += (int)(valorePuntata * 1.5);
+            if(somma != sommaDealer){
+                soldiCorrenti += valorePuntata;
+            }
         }
 
         soldiLabel.setText(soldiCorrenti + "€");
